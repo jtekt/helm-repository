@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-image-storage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-image-storage
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-image-storage
+    spec:
+      containers:
+      - name: {{ .Release.Name }}-image-storage
+        image: moreillon/image-storage
+        ports:
+        - containerPort: 80
+        env:
+        - name: MONGODB_URL
+          value: mongodb://{{ .Release.Name }}-mongo
+        volumeMounts:
+        - mountPath: "/usr/share/pv"
+          name: {{ .Release.Name }}-image-storage
+      volumes:
+      - name: {{ .Release.Name }}-image-storage
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}-image-storage

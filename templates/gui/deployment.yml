@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-image-storage-front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-image-storage-front
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-image-storage-front
+    spec:
+      containers:
+      - name: {{ .Release.Name }}-image-storage-front
+        image: moreillon/image-storage-front-vuetify
+        ports:
+        - containerPort: 80
+        env:
+        - name: VUE_APP_STORAGE_SERVICE_API_URL
+          value: /proxy/api
