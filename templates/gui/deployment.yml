@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: {{ .Release.Name }}-image-storage-front
-        image: moreillon/image-storage-front-vuetify
+        image: moreillon/image-storage-front
         ports:
         - containerPort: 80
         env:
