@@ -1,3 +1,6 @@
-# Image storage
+# Image storage Helm chart
 
-This chart is under construction
+## Usage
+```
+helm3 install image-storage-demo ./ --values ./values.yaml
+```
