@@ -1,6 +1,6 @@
 apiVersion: v2
-name: image-storage
-description: A Helm chart for Kubernetes
+name: image-storage-service
+description: Helm chart for the Image Storage Service
 
 # A chart can be either an 'application' or a 'library' chart.
 #

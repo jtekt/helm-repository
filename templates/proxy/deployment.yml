@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: {{ .Release.Name }}-api-proxy
-        image: moreillon/api-proxy
+        image: moreillon/api-proxy:a3e8b41e
         ports:
         - containerPort: 80
         env:

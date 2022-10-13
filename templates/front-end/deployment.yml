@@ -14,9 +14,9 @@ spec:
     spec:
       containers:
       - name: {{ .Release.Name }}-image-storage-front
-        image: moreillon/image-storage-front
+        image: public.ecr.aws/u6l4m3e5/image-storage-service-gui:b3b16dbb
         ports:
         - containerPort: 80
         env:
-        - name: VUE_APP_STORAGE_SERVICE_API_URL
+        - name: VUE_APP_IMAGE_STORAGE_API_URL
           value: /proxy/api

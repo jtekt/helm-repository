@@ -1,6 +1,14 @@
-# Image storage Helm chart
+# Image storage service Helm chart
+
+Deploys all the necessary components for a working Image storage service instance:
+
+* Image storage service back-end
+* GUI
+* Database
+* Reverse-proxy
+
 
 ## Usage
 ```
-helm3 install image-storage-demo ./ --values ./values.yaml
+helm3 install image-storage ./ --values ./values.yaml
 ```

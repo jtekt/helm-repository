@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: {{ .Release.Name }}-image-storage
-        image: moreillon/image-storage
+        image: public.ecr.aws/u6l4m3e5/image-storage-service:067099d5
         ports:
         - containerPort: 80
         env:
