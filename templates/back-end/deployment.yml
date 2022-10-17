@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-image-storage
+  name: {{ .Release.Name }}-back
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Release.Name }}-image-storage
+      app: {{ .Release.Name }}-back
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}-image-storage
+        app: {{ .Release.Name }}-back
     spec:
       containers:
-      - name: {{ .Release.Name }}-image-storage
+      - name: {{ .Release.Name }}-back
         image: public.ecr.aws/u6l4m3e5/image-storage-service:067099d5
         ports:
         - containerPort: 80
@@ -22,8 +22,8 @@ spec:
           value: mongodb://{{ .Release.Name }}-mongo
         volumeMounts:
         - mountPath: "/usr/share/pv"
-          name: {{ .Release.Name }}-image-storage
+          name: {{ .Release.Name }}-back
       volumes:
-      - name: {{ .Release.Name }}-image-storage
+      - name: {{ .Release.Name }}-back
         persistentVolumeClaim:
-          claimName: {{ .Release.Name }}-image-storage
+          claimName: {{ .Release.Name }}-back

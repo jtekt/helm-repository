@@ -18,7 +18,7 @@ spec:
         ports:
         - containerPort: 80
         env:
-        - name: PROXY_API
-          value: http://{{ .Release.Name }}-image-storage
+        - name: PROXY_back
+          value: http://{{ .Release.Name }}-back
         - name: PROXY_ROOT
-          value: http://{{ .Release.Name }}-image-storage-front
+          value: http://{{ .Release.Name }}-gui

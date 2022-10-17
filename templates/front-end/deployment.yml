@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-image-storage-front
+  name: {{ .Release.Name }}-gui
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Release.Name }}-image-storage-front
+      app: {{ .Release.Name }}-gui
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}-image-storage-front
+        app: {{ .Release.Name }}-gui
     spec:
       containers:
-      - name: {{ .Release.Name }}-image-storage-front
+      - name: {{ .Release.Name }}-gui
         image: public.ecr.aws/u6l4m3e5/image-storage-service-gui:b3b16dbb
         ports:
         - containerPort: 80
         env:
         - name: VUE_APP_IMAGE_STORAGE_API_URL
-          value: /proxy/api
+          value: /proxy/back

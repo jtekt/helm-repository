@@ -2,3 +2,4 @@ Image storage service
 Release name: {{ .Release.Name }}
 GUI available on port {{ .Values.ports.frontEnd}}
 Back-end available on port {{ .Values.ports.backEnd}}
+
