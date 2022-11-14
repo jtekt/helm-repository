@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-api-proxy
+  name: {{ .Values.applicationName }}-proxy
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Release.Name }}-api-proxy
+      app: {{ .Values.applicationName }}-proxy
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}-api-proxy
+        app: {{ .Values.applicationName }}-proxy
     spec:
       containers:
-      - name: {{ .Release.Name }}-api-proxy
+      - name: {{ .Values.applicationName }}-proxy
         image: moreillon/api-proxy:a3e8b41e
         ports:
         - containerPort: 80
         env:
         - name: PROXY_BACK
-          value: http://{{ .Release.Name }}-back
+          value: http://{{ .Values.applicationName }}-back
         - name: PROXY_ROOT
-          value: http://{{ .Release.Name }}-gui
+          value: http://{{ .Values.applicationName }}-gui

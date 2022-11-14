@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-back
+  name: {{ .Values.applicationName }}-back
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Release.Name }}-back
+      app: {{ .Values.applicationName }}-back
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}-back
+        app: {{ .Values.applicationName }}-back
     spec:
       containers:
-      - name: {{ .Release.Name }}-back
-        image: public.ecr.aws/jtekt-corporation/image-storage-service:e3fb59e9
+      - name: {{ .Values.applicationName }}-back
+        image: public.ecr.aws/jtekt-corporation/image-storage-service:b15c66a1
         ports:
         - containerPort: 80
         env:
         - name: MONGODB_URL
-          value: mongodb://{{ .Release.Name }}-mongo
+          value: mongodb://{{ .Values.applicationName }}-mongo
         volumeMounts:
-        - mountPath: "/usr/share/pv"
-          name: {{ .Release.Name }}-back
+        - mountPath: /usr/src/app/uploads
+          name: {{ .Values.applicationName }}-back
       volumes:
-      - name: {{ .Release.Name }}-back
+      - name: {{ .Values.applicationName }}-back
         persistentVolumeClaim:
-          claimName: {{ .Release.Name }}-back
+          claimName: {{ .Values.applicationName }}-back

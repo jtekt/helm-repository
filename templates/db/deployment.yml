@@ -1,26 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-mongo
+  name: {{ .Values.applicationName }}-mongo
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Release.Name }}-mongo
+      app: {{ .Values.applicationName }}-mongo
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}-mongo
+        app: {{ .Values.applicationName }}-mongo
     spec:
       containers:
-      - name: {{ .Release.Name }}-mongo
+      - name: {{ .Values.applicationName }}-mongo
         image: mongo:4
         ports:
         - containerPort: 27017
         volumeMounts:
         - mountPath: "/data/db"
-          name: {{ .Release.Name }}-mongo
+          name: {{ .Values.applicationName }}-mongo
       volumes:
-      - name: {{ .Release.Name }}-mongo
+      - name: {{ .Values.applicationName }}-mongo
         persistentVolumeClaim:
-          claimName: {{ .Release.Name }}-mongo
+          claimName: {{ .Values.applicationName }}-mongo

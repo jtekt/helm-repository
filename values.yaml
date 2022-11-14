@@ -5,3 +5,5 @@ pvc_sizes:
 ports:
   backEnd: 30470
   frontEnd: 30480
+
+applicationName: image-storage

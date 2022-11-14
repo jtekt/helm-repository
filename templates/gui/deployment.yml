@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-gui
+  name: {{ .Values.applicationName }}-gui
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Release.Name }}-gui
+      app: {{ .Values.applicationName }}-gui
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}-gui
+        app: {{ .Values.applicationName }}-gui
     spec:
       containers:
-      - name: {{ .Release.Name }}-gui
-        image: public.ecr.aws/jtekt-corporation/image-storage-service-gui:2cd3bea9
+      - name: {{ .Values.applicationName }}-gui
+        image: public.ecr.aws/jtekt-corporation/image-storage-service-gui:80f865c5
         ports:
         - containerPort: 80
         env:

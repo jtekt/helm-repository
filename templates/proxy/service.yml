@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Release.Name }}-api-proxy
+  name: {{ .Values.applicationName }}-proxy
 spec:
   type: NodePort
   selector:
-    app: {{ .Release.Name }}-api-proxy
+    app: {{ .Values.applicationName }}-proxy
   ports:
   - port: 80
     nodePort: {{ .Values.ports.frontEnd}}
