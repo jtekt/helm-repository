@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Release.Name }}-image-storage-front
+  name: {{ .Release.Name }}-gui
 spec:
   type: ClusterIP
   selector:
-    app: {{ .Release.Name }}-image-storage-front
+    app: {{ .Release.Name }}-gui
   ports:
   - port: 80
