@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: {{ .Values.applicationName }}-back
-        image: public.ecr.aws/jtekt-corporation/image-storage-service:f7a2dea5
+        image: public.ecr.aws/jtekt-corporation/image-storage-service:168df190
         ports:
         - containerPort: 80
         env:
