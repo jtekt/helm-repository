@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: {{ .Values.applicationName }}-gui
-        image: public.ecr.aws/jtekt-corporation/image-storage-service-gui:31956362
+        image: public.ecr.aws/jtekt-corporation/image-storage-service-gui:0d08f660
         ports:
         - containerPort: 80
         env:
