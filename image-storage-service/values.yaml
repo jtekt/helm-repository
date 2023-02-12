@@ -1,3 +1,5 @@
+applicationName: image-storage
+
 pvc_sizes:
   mongo: 100Gi
   imageStorage: 200Gi
@@ -5,5 +7,3 @@ pvc_sizes:
 ports:
   backEnd: 30470
   frontEnd: 30480
-
-applicationName: image-storage
