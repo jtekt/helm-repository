@@ -1,5 +1,10 @@
-Image storage service
-Release name: {{ .Release.Name }}
-GUI available on port {{ .Values.ports.frontEnd}}
-Back-end available on port {{ .Values.ports.backEnd}}
+# Image storage service
+
+{{- if .Values.ingress.enabled }}
+GUI available at {{ include "image-storage-service.ingress.host" . }}
+API available at api.{{ include "image-storage-service.ingress.host" . }}
+{{- else }}
+GUI available on port {{ .Values.nodePorts.gui}}
+API available on port {{ .Values.nodePorts.api}}
+{{- end }}
 

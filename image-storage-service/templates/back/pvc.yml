@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ .Values.applicationName }}-back
+  name: {{include "image-storage-service.prefix" .}}-back
 spec:
   accessModes:
     - ReadWriteOnce

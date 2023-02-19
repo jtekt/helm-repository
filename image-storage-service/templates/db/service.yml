@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.applicationName }}-mongo
+  name: {{include "image-storage-service.prefix" .}}-mongo
 spec:
   ports:
   - port: 27017
   selector:
-    app: {{ .Values.applicationName }}-mongo
+    app: {{include "image-storage-service.prefix" .}}-mongo
   type: ClusterIP

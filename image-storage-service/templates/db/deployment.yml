@@ -1,26 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.applicationName }}-mongo
+  name: {{include "image-storage-service.prefix" .}}-mongo
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Values.applicationName }}-mongo
+      app: {{include "image-storage-service.prefix" .}}-mongo
   template:
     metadata:
       labels:
-        app: {{ .Values.applicationName }}-mongo
+        app: {{include "image-storage-service.prefix" .}}-mongo
     spec:
       containers:
-      - name: {{ .Values.applicationName }}-mongo
+      - name: {{include "image-storage-service.prefix" .}}-mongo
         image: mongo:4
         ports:
         - containerPort: 27017
         volumeMounts:
         - mountPath: "/data/db"
-          name: {{ .Values.applicationName }}-mongo
+          name: {{include "image-storage-service.prefix" .}}-mongo
       volumes:
-      - name: {{ .Values.applicationName }}-mongo
+      - name: {{include "image-storage-service.prefix" .}}-mongo
         persistentVolumeClaim:
-          claimName: {{ .Values.applicationName }}-mongo
+          claimName: {{include "image-storage-service.prefix" .}}-mongo

@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.applicationName }}-gui
+  name: {{include "image-storage-service.prefix" .}}-gui
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Values.applicationName }}-gui
+      app: {{include "image-storage-service.prefix" .}}-gui
   template:
     metadata:
       labels:
-        app: {{ .Values.applicationName }}-gui
+        app: {{include "image-storage-service.prefix" .}}-gui
     spec:
       containers:
-      - name: {{ .Values.applicationName }}-gui
+      - name: {{include "image-storage-service.prefix" .}}-gui
         image: public.ecr.aws/jtekt-corporation/image-storage-service-gui:0d08f660
         ports:
         - containerPort: 80

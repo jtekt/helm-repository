@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.applicationName }}-back
+  name: {{include "image-storage-service.prefix" .}}-back
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Values.applicationName }}-back
+      app: {{include "image-storage-service.prefix" .}}-back
   template:
     metadata:
       labels:
-        app: {{ .Values.applicationName }}-back
+        app: {{include "image-storage-service.prefix" .}}-back
     spec:
       containers:
-      - name: {{ .Values.applicationName }}-back
+      - name: {{include "image-storage-service.prefix" .}}-back
         image: public.ecr.aws/jtekt-corporation/image-storage-service:6ee19653
         ports:
         - containerPort: 80
         env:
         - name: MONGODB_URL
-          value: mongodb://{{ .Values.applicationName }}-mongo
+          value: mongodb://{{include "image-storage-service.prefix" .}}-mongo
         volumeMounts:
         - mountPath: /usr/src/app/uploads
-          name: {{ .Values.applicationName }}-back
+          name: {{include "image-storage-service.prefix" .}}-back
       volumes:
-      - name: {{ .Values.applicationName }}-back
+      - name: {{include "image-storage-service.prefix" .}}-back
         persistentVolumeClaim:
-          claimName: {{ .Values.applicationName }}-back
+          claimName: {{include "image-storage-service.prefix" .}}-back

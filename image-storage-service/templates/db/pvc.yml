@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ .Values.applicationName }}-mongo
+  name: {{include "image-storage-service.prefix" .}}-mongo
 spec:
   accessModes:
     - ReadWriteOnce

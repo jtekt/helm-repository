@@ -1,9 +1,14 @@
-applicationName: image-storage
-
 pvc_sizes:
   mongo: 100Gi
   imageStorage: 200Gi
 
 ports:
-  backEnd: 30470
-  frontEnd: 30480
+  backEnd: 30170
+  frontEnd: 30180
+
+ingress:
+  enabled: false
+  #host: images.example.com
+  #annotations:
+  #  kubernetes.io/ingress.class: nginx
+  #  cert-manager.io/cluster-issuer: letsencrypt-prod

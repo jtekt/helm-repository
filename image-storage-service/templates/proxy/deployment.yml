@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.applicationName }}-proxy
+  name: {{include "image-storage-service.prefix" .}}-proxy
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Values.applicationName }}-proxy
+      app: {{include "image-storage-service.prefix" .}}-proxy
   template:
     metadata:
       labels:
-        app: {{ .Values.applicationName }}-proxy
+        app: {{include "image-storage-service.prefix" .}}-proxy
     spec:
       containers:
-      - name: {{ .Values.applicationName }}-proxy
+      - name: {{include "image-storage-service.prefix" .}}-proxy
         image: moreillon/api-proxy:a3e8b41e
         ports:
         - containerPort: 80
         env:
         - name: PROXY_BACK
-          value: http://{{ .Values.applicationName }}-back
+          value: http://{{include "image-storage-service.prefix" .}}-back
         - name: PROXY_ROOT
-          value: http://{{ .Values.applicationName }}-gui
+          value: http://{{include "image-storage-service.prefix" .}}-gui
