@@ -4,7 +4,7 @@
 GUI available at {{ include "image-storage-service.ingress.host" . }}
 API available at api.{{ include "image-storage-service.ingress.host" . }}
 {{- else }}
-GUI available on port {{ .Values.nodePorts.gui}}
-API available on port {{ .Values.nodePorts.api}}
+GUI available on port {{ .Values.ports.gui}}
+API available on port {{ .Values.ports.api}}
 {{- end }}
 
