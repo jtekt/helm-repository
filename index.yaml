@@ -3,6 +3,17 @@ entries:
   image-storage-service:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-02-20T02:01:23.739526387Z"
+    description: Helm chart for the Image Storage Service
+    digest: e1bc73faade5185b92026cf662d89413702147d4afbdea4510b15a72530910b9
+    icon: https://jtekt.github.io/image-storage-microservice-helm-chart/database-image.png
+    name: image-storage-service
+    type: application
+    urls:
+    - https://github.com/jtekt/image-storage-microservice-helm-chart/releases/download/image-storage-service-0.1.4/image-storage-service-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-02-19T22:13:46.644334563Z"
     description: Helm chart for the Image Storage Service
     digest: c91a3662274eab08d990993053c423cc0388fb332360ee34734b910ab0f596ac
@@ -32,4 +43,4 @@ entries:
     urls:
     - https://github.com/jtekt/image-storage-microservice-helm-chart/releases/download/image-storage-service-0.1.1/image-storage-service-0.1.1.tgz
     version: 0.1.1
-generated: "2023-02-19T22:13:46.644361265Z"
+generated: "2023-02-20T02:01:23.739545987Z"
