@@ -1,0 +1,24 @@
+{{ $fullName := printf "%s-gui" (include "annotation-tool.prefix" .) | trunc 63 | trimSuffix "-" }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $fullName }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ $fullName }}
+  template:
+    metadata:
+      labels:
+        app: {{ $fullName }}
+    spec:
+      containers:
+      - name: {{ $fullName }}
+        image: public.ecr.aws/jtekt-corporation/image-storage-service-gui:0d08f660
+        ports:
+        - containerPort: 80
+        env:
+        # TODO: check if correct
+        - name: VUE_APP_IMAGE_STORAGE_API_URL
+          value: /proxy/back

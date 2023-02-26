@@ -1,0 +1,11 @@
+{{ $fullName := printf "%s-gui" (include "annotation-tool.prefix" .) | trunc 63 | trimSuffix "-" }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $fullName }}
+spec:
+  type: ClusterIP
+  selector:
+    app: {{ $fullName }}
+  ports:
+  - port: 80
