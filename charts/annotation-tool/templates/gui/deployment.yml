@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: {{ $fullName }}
-        image: public.ecr.aws/jtekt-corporation/image-storage-service-gui:0d08f660
+        image: public.ecr.aws/jtekt-corporation/annotation-tool:ef974ad9
         ports:
         - containerPort: 80
         env:

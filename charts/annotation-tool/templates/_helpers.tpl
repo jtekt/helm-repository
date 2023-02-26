@@ -11,8 +11,8 @@ Unless anything provided, defaults to {release}-iss-api
 If iss.api.url is provided, use that
 */}}
 {{- define "annotation-tool.apiUrl" -}}
-  {{- if ((.Values.iss).api).url }}
-    {{- .Values.iss.api.url }}
+  {{- if (.Values.iss).url }}
+    {{- .Values.iss.url }}
   {{- else -}}
     http://{{- printf "%s-%s" .Release.Name "iss-api" | trunc 63 | trimSuffix "-" }}
   {{- end }}
