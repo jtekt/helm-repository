@@ -1,3 +1,4 @@
+{{ $mongodbUrl := include "image-storage-service.mongodb.url" . }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -19,7 +20,7 @@ spec:
         - containerPort: 80
         env:
         - name: MONGODB_URL
-          value: mongodb://{{include "image-storage-service.prefix" .}}-mongo
+          value: {{ $mongodbUrl }}
         volumeMounts:
         - mountPath: /usr/src/app/uploads
           name: {{include "image-storage-service.prefix" .}}-back

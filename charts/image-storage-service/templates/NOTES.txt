@@ -3,8 +3,15 @@
 {{- if .Values.ingress.enabled }}
 GUI available at {{ include "image-storage-service.ingress.host" . }}
 API available at api.{{ include "image-storage-service.ingress.host" . }}
-{{- else }}
-GUI available on port {{ .Values.ports.gui}}
-API available on port {{ .Values.ports.api}}
 {{- end }}
+
+
+{{- if (.Values.ports).frontEnd }}
+GUI available on port {{ .Values.ports.frontEnd}}
+{{- end -}}
+
+{{- if (.Values.ports).backEnd }}
+API available on port {{ .Values.ports.backEnd }}
+{{- end -}}
+
 

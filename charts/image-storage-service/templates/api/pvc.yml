@@ -7,4 +7,4 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: {{ default "200Gi" .Values.pvc_sizes.imageStorage}}
+      storage: 200Gi

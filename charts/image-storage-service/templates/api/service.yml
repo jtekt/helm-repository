@@ -8,4 +8,4 @@ spec:
     app: {{include "image-storage-service.prefix" .}}-back
   ports:
   - port: 80
-    nodePort: {{ .Values.ports.backEnd}}
+    nodePort: {{ .Values.ports.backEnd }}
