@@ -1,24 +1,29 @@
+{{ $fullName := printf "%s-proxy" (include "image-storage-service.prefix" .) | trunc 63 | trimSuffix "-"  }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{include "image-storage-service.prefix" .}}-proxy
+  name: {{ $fullName }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{include "image-storage-service.prefix" .}}-proxy
+      app: {{ $fullName }}
   template:
     metadata:
       labels:
-        app: {{include "image-storage-service.prefix" .}}-proxy
+        app: {{ $fullName }}
     spec:
       containers:
-      - name: {{include "image-storage-service.prefix" .}}-proxy
+      - name: {{ $fullName }}
         image: moreillon/api-proxy:a3e8b41e
         ports:
         - containerPort: 80
         env:
         - name: PROXY_BACK
-          value: http://{{include "image-storage-service.prefix" .}}-back
+          value: http://{{ printf "%s-back" (include "image-storage-service.prefix" .) | trunc 63 | trimSuffix "-" }}
         - name: PROXY_ROOT
-          value: http://{{include "image-storage-service.prefix" .}}-gui
+          value: http://{{ printf "%s-gui" (include "image-storage-service.prefix" .) | trunc 63 | trimSuffix "-" }}
+        {{ if .Values.auth.enabled }}
+        - name: PROXY_AUTH
+          value: http://{{ printf "%s-auth-api" .Release.Name | trunc 63 | trimSuffix "-" }}
+        {{ end }}

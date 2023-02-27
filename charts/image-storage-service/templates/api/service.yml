@@ -1,11 +1,12 @@
+{{ $fullName := printf "%s-back" (include "image-storage-service.prefix" .) | trunc 63 | trimSuffix "-" }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{include "image-storage-service.prefix" .}}-back
+  name: {{ $fullName }}
 spec:
   type: NodePort
   selector:
-    app: {{include "image-storage-service.prefix" .}}-back
+    app: {{ $fullName }}
   ports:
   - port: 80
     nodePort: {{ .Values.ports.backEnd }}

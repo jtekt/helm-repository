@@ -1,26 +1,26 @@
-{{- if .Values.ingress.enabled -}}
+{{ $ingressEnabled := eq (include "image-storage-service.ingress.enabled" .) "true"}}
+{{- if $ingressEnabled -}}
+{{ $fullName := printf "%s-back" (include "image-storage-service.prefix" .) | trunc 63 | trimSuffix "-" }}
+{{ $host := include "image-storage-service.ingress.host" . }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "image-storage-service.prefix" . }}-api
-  annotations:
-    {{- with .Values.ingress.annotations }}
-      {{- toYaml . | nindent 4 }}
-    {{- end }}
+  name: {{ $fullName }}
+  annotations: {{ include "image-storage-service.ingress.annotations" .}}
 spec:
   tls:
     - hosts:
-        - api.{{ include "image-storage-service.ingress.host" . }}
-      secretName: {{ include "image-storage-service.prefix" . }}-api
+        - api.{{ $host }}
+      secretName: {{ $fullName }}
   rules:
-    - host: api.{{ include "image-storage-service.ingress.host" . }}
+    - host: api.{{ $host }}
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service: 
-                name: {{ include "image-storage-service.prefix" . }}-api
+                name: {{ $fullName }}
                 port:
                   number: 80
 {{- end }}

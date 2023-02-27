@@ -1,3 +1,4 @@
+nameOverride: iss
 # TODO: rename to nodePorts
 ports:
   backEnd: 30170
@@ -15,4 +16,10 @@ mongodb:
   persistence:
     size: 100Gi
   auth:
+    enabled: false
+    rootPassword: banana
+
+auth:
+  enabled: false
+  mongodb:
     enabled: false

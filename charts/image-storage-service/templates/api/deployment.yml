@@ -1,30 +1,35 @@
+{{ $fullName := printf "%s-back" (include "image-storage-service.prefix" .) | trunc 63 | trimSuffix "-" }}
 {{ $mongodbUrl := include "image-storage-service.mongodb.url" . }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{include "image-storage-service.prefix" .}}-back
+  name: {{ $fullName }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{include "image-storage-service.prefix" .}}-back
+      app: {{ $fullName }}
   template:
     metadata:
       labels:
-        app: {{include "image-storage-service.prefix" .}}-back
+        app: {{ $fullName }}
     spec:
       containers:
-      - name: {{include "image-storage-service.prefix" .}}-back
+      - name: {{ $fullName }}
         image: public.ecr.aws/jtekt-corporation/image-storage-service:6ee19653
         ports:
         - containerPort: 80
         env:
         - name: MONGODB_URL
           value: {{ $mongodbUrl }}
+        {{ if .Values.auth.enabled }}
+        - name: AUTHENTICATION_URL
+          value: http://{{ printf "%s-auth-api" .Release.Name | trunc 63 | trimSuffix "-" }}/users/self
+        {{ end }}
         volumeMounts:
         - mountPath: /usr/src/app/uploads
-          name: {{include "image-storage-service.prefix" .}}-back
+          name: {{ $fullName }}
       volumes:
-      - name: {{include "image-storage-service.prefix" .}}-back
+      - name: {{ $fullName }}
         persistentVolumeClaim:
-          claimName: {{include "image-storage-service.prefix" .}}-back
+          claimName: {{ $fullName }}
