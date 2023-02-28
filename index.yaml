@@ -3,6 +3,27 @@ entries:
   image-storage-service:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-02-28T23:15:26.740227862Z"
+    dependencies:
+    - condition: mongodb.enabled
+      name: mongodb
+      repository: https://charts.bitnami.com/bitnami
+      version: 13.8.1
+    - alias: auth
+      condition: auth.enabled
+      name: user-manager-mongodb
+      repository: https://maximemoreillon.github.io/helm-repository
+      version: 0.3.5
+    description: Helm chart for the Image Storage Service
+    digest: 692b314bce38b8cd56d9939f663d83bc3139d6fc32db0c1eea70355b89d30d71
+    icon: https://raw.githubusercontent.com/jtekt/helm-repository/master/charts/image-storage-service/icon.png
+    name: image-storage-service
+    type: application
+    urls:
+    - https://github.com/jtekt/helm-repository/releases/download/image-storage-service-0.2.2/image-storage-service-0.2.2.tgz
+    version: 0.2.2
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-02-27T23:42:27.715878137Z"
     dependencies:
     - condition: mongodb.enabled
@@ -71,4 +92,4 @@ entries:
     urls:
     - https://github.com/jtekt/image-storage-microservice-helm-chart/releases/download/image-storage-service-0.1.4/image-storage-service-0.1.4.tgz
     version: 0.1.4
-generated: "2023-02-27T23:42:27.715898136Z"
+generated: "2023-02-28T23:15:26.740250362Z"
