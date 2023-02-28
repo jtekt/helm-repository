@@ -1,7 +1,6 @@
 {{ $ingressEnabled := eq (include "image-storage-service.ingress.enabled" .) "true"}}
 {{- if $ingressEnabled -}}
 {{ $fullName := printf "%s-proxy" (include "image-storage-service.prefix" .) | trunc 63 | trimSuffix "-" }}
-{{ $host := include "image-storage-service.ingress.host" . }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -10,10 +9,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - api.{{ $host }}
+        - {{ include "image-storage-service.ingress.host" . }}
       secretName: {{ $fullName }}
   rules:
-    - host: api.{{ $host }}
+    - host: {{ include "image-storage-service.ingress.host" . }}
       http:
         paths:
           - path: /

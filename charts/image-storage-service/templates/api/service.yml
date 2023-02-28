@@ -9,4 +9,4 @@ spec:
     app: {{ $fullName }}
   ports:
   - port: 80
-    nodePort: {{ .Values.ports.backEnd }}
+    nodePort: {{ .Values.service.nodePorts.api }}

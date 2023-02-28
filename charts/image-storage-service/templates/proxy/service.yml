@@ -4,9 +4,10 @@ kind: Service
 metadata:
   name: {{ $fullName }}
 spec:
+  # TODO: Selectable type
   type: NodePort
   selector:
     app: {{ $fullName }}
   ports:
   - port: 80
-    nodePort: {{ .Values.ports.frontEnd }}
+    nodePort: {{ .Values.service.nodePorts.gui }}

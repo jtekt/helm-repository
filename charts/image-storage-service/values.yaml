@@ -1,8 +1,12 @@
 nameOverride: iss
-# TODO: rename to nodePorts
-ports:
-  backEnd: 30170
-  frontEnd: 30180
+# TODO: rename to service.nodePorts
+service:
+  nodePorts:
+    api: 30170
+    gui: 30180
+
+persistence:
+  sieze: 100Gi
 
 ingress:
   enabled: false
