@@ -1,0 +1,26 @@
+{{ $fullName := printf "%s-proxy" (include "annotation-tool.prefix" .) | trunc 63 | trimSuffix "-" }}
+{{ $guiFullName := printf "%s-gui" (include "annotation-tool.prefix" .) | trunc 63 | trimSuffix "-" }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $fullName }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ $fullName }}
+  template:
+    metadata:
+      labels:
+        app: {{ $fullName }}
+    spec:
+      containers:
+      - name: {{ $fullName }}
+        image: moreillon/api-proxy:a3e8b41e
+        ports:
+        - containerPort: 80
+        env:
+        - name: PROXY_BACK
+          value: {{ include "annotation-tool.apiUrl" . }}
+        - name: PROXY_ROOT
+          value: http://{{ $guiFullName }}
