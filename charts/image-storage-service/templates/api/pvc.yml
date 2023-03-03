@@ -8,5 +8,4 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      # TODO: consutomizable
-      storage: 200Gi
+      storage: {{ default "200Gi" .Values.persistence.size }}
