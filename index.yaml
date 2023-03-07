@@ -3,6 +3,17 @@ entries:
   annotation-tool:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-03-07T04:04:39.570467362Z"
+    description: A Helm chart to deploy the JTEKT annotation tool
+    digest: ecb81c8c202b34afbbf398633810f32ccbc14de685fce60adb54d622b24f8a8c
+    icon: https://raw.githubusercontent.com/jtekt/helm-repository/master/charts/annotation-tool/icon.png
+    name: annotation-tool
+    type: application
+    urls:
+    - https://github.com/jtekt/helm-repository/releases/download/annotation-tool-0.1.2/annotation-tool-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-03-07T02:58:19.648261231Z"
     description: A Helm chart to deploy the JTEKT annotation tool
     digest: 3ceb49c5554820117f3cf5f243b3b806dd792a124201d0d19b98762f9c4a687b
@@ -44,4 +55,4 @@ entries:
     urls:
     - https://github.com/jtekt/helm-repository/releases/download/image-storage-service-0.2.4/image-storage-service-0.2.4.tgz
     version: 0.2.4
-generated: "2023-03-07T02:58:19.851207324Z"
+generated: "2023-03-07T04:04:39.739564001Z"
