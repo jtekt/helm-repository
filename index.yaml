@@ -3,6 +3,17 @@ entries:
   annotation-tool:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-03-07T02:58:19.648261231Z"
+    description: A Helm chart to deploy the JTEKT annotation tool
+    digest: 3ceb49c5554820117f3cf5f243b3b806dd792a124201d0d19b98762f9c4a687b
+    icon: https://raw.githubusercontent.com/jtekt/helm-repository/master/charts/annotation-tool/icon.png
+    name: annotation-tool
+    type: application
+    urls:
+    - https://github.com/jtekt/helm-repository/releases/download/annotation-tool-0.1.1/annotation-tool-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-03-02T08:24:49.688683143Z"
     description: A Helm chart for Kubernetes
     digest: a76e8d7e5b48b461f8984a55344e69760a9c82e58039ad4616353d273c30be46
@@ -12,6 +23,27 @@ entries:
     - https://github.com/jtekt/helm-repository/releases/download/annotation-tool-0.1.0/annotation-tool-0.1.0.tgz
     version: 0.1.0
   image-storage-service:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-03-07T02:58:19.851016422Z"
+    dependencies:
+    - condition: mongodb.enabled
+      name: mongodb
+      repository: https://charts.bitnami.com/bitnami
+      version: 13.8.1
+    - alias: auth
+      condition: auth.enabled
+      name: user-manager-mongodb
+      repository: https://maximemoreillon.github.io/helm-repository
+      version: 0.3.5
+    description: Helm chart for the Image Storage Service
+    digest: 488c0c294c56cbb7a3319cb0766431da522f4f8f59e876141f9295d70f7b584c
+    icon: https://raw.githubusercontent.com/jtekt/helm-repository/master/charts/image-storage-service/icon.png
+    name: image-storage-service
+    type: application
+    urls:
+    - https://github.com/jtekt/helm-repository/releases/download/image-storage-service-0.2.4/image-storage-service-0.2.4.tgz
+    version: 0.2.4
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2023-02-28T23:15:26.740227862Z"
@@ -103,4 +135,4 @@ entries:
     urls:
     - https://github.com/jtekt/image-storage-microservice-helm-chart/releases/download/image-storage-service-0.1.4/image-storage-service-0.1.4.tgz
     version: 0.1.4
-generated: "2023-03-02T08:24:49.842497956Z"
+generated: "2023-03-07T02:58:19.851207324Z"
