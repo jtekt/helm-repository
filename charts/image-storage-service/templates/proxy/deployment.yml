@@ -15,11 +15,13 @@ spec:
     spec:
       containers:
       - name: {{ $fullName }}
-        image: moreillon/api-proxy:a3e8b41e
+        image: moreillon/api-proxy:ebc18c41
         ports:
         - containerPort: 80
         env:
-        - name: PROXY_BACK
+        - name: PATH_PREFIX
+          value: ""
+        - name: PROXY_API
           value: http://{{ printf "%s-back" (include "image-storage-service.prefix" .) | trunc 63 | trimSuffix "-" }}
         - name: PROXY_ROOT
           value: http://{{ printf "%s-gui" (include "image-storage-service.prefix" .) | trunc 63 | trimSuffix "-" }}

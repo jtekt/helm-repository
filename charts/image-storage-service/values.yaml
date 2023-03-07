@@ -1,19 +1,18 @@
 nameOverride: iss
-# TODO: rename to service.nodePorts
+
 service:
-  nodePorts:
-    api: 30170
-    gui: 30180
+  type: NodePort
+  nodePort: 30111
 
 persistence:
-  sieze: 100Gi
+  size: 100Gi
 
 ingress:
   enabled: false
   #host: images.example.com
-  #annotations:
-  #  kubernetes.io/ingress.class: nginx
-  #  cert-manager.io/cluster-issuer: letsencrypt-prod
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 
 mongodb:
   enabled: true

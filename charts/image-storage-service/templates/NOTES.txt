@@ -1,17 +1,2 @@
-# Image storage service
-
-{{- if .Values.ingress.enabled }}
-GUI available at {{ include "image-storage-service.ingress.host" . }}
-API available at api.{{ include "image-storage-service.ingress.host" . }}
-{{- end }}
-
-
-{{- if (.Values.ports).frontEnd }}
-GUI available on port {{ .Values.ports.frontEnd}}
-{{- end -}}
-
-{{- if (.Values.ports).backEnd }}
-API available on port {{ .Values.ports.backEnd }}
-{{- end -}}
-
+Image storage service
 

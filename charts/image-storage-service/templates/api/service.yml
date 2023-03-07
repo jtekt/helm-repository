@@ -4,9 +4,8 @@ kind: Service
 metadata:
   name: {{ $fullName }}
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: {{ $fullName }}
   ports:
   - port: 80
-    nodePort: {{ .Values.service.nodePorts.api }}
