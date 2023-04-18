@@ -76,4 +76,16 @@ entries:
     urls:
     - https://github.com/jtekt/helm-repository/releases/download/image-storage-service-0.2.4/image-storage-service-0.2.4.tgz
     version: 0.2.4
-generated: "2023-03-15T05:07:28.692731219Z"
+  polygonal-annotation-tool:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-04-18T23:20:04.124006066Z"
+    description: A Helm chart to deploy the JTEKT polygonal annotation tool
+    digest: 137cdcebeb300e22080bd84606b4512c8af4605374ce9f82ffa128cf2806273f
+    icon: https://raw.githubusercontent.com/jtekt/helm-repository/master/charts/polygonal-annotation-tool/icon.png
+    name: polygonal-annotation-tool
+    type: application
+    urls:
+    - https://github.com/jtekt/helm-repository/releases/download/polygonal-annotation-tool-0.1.0/polygonal-annotation-tool-0.1.0.tgz
+    version: 0.1.0
+generated: "2023-04-18T23:20:04.124023267Z"
