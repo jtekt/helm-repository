@@ -1,0 +1,7 @@
+apiVersion: v2
+name: polygonal-annotation-tool
+description: A Helm chart to deploy the JTEKT polygonal annotation tool
+type: application
+version: 0.1.0
+appVersion: "1.16.0"
+icon: https://raw.githubusercontent.com/jtekt/helm-repository/master/charts/polygonal-annotation-tool/icon.png
