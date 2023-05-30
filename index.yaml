@@ -36,6 +36,27 @@ entries:
   image-storage-service:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-05-30T07:10:12.650056128Z"
+    dependencies:
+    - condition: mongodb.enabled
+      name: mongodb
+      repository: https://charts.bitnami.com/bitnami
+      version: 13.15.1
+    - alias: auth
+      condition: auth.enabled
+      name: user-manager-mongodb
+      repository: https://maximemoreillon.github.io/helm-repository
+      version: 0.3.5
+    description: Helm chart for the Image Storage Service
+    digest: 75189240ddd97636ecf17c4d452769a8bb554f0b9a14ba24966376f01b9286be
+    icon: https://raw.githubusercontent.com/jtekt/helm-repository/master/charts/image-storage-service/icon.png
+    name: image-storage-service
+    type: application
+    urls:
+    - https://github.com/jtekt/helm-repository/releases/download/image-storage-service-0.2.7/image-storage-service-0.2.7.tgz
+    version: 0.2.7
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-03-15T05:07:28.692715118Z"
     dependencies:
     - condition: mongodb.enabled
@@ -88,4 +109,4 @@ entries:
     urls:
     - https://github.com/jtekt/helm-repository/releases/download/polygonal-annotation-tool-0.1.0/polygonal-annotation-tool-0.1.0.tgz
     version: 0.1.0
-generated: "2023-04-18T23:20:04.124023267Z"
+generated: "2023-05-30T07:10:12.852873497Z"
