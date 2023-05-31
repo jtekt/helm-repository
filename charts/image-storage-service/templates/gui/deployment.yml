@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: {{include "image-storage-service.prefix" .}}-gui
-        image: public.ecr.aws/jtekt-corporation/image-storage-service-gui:0d08f660
+        image: public.ecr.aws/jtekt-corporation/image-storage-service-gui:a375c7a7
         ports:
         - containerPort: 80
         env:
