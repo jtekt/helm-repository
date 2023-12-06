@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "time-series-storage.fullname" . }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ include "time-series-storage.fullname" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "time-series-storage.fullname" . }}
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        ports:
+        - containerPort: 80
+        env:
+        - name: INFLUXDB_URL
+          value: http://{{ .Release.Name }}-influxdb:8086
+        - name: INFLUXDB_ORG
+          value: {{ .Values.influxdb.auth.admin.org}}
+        - name: INFLUXDB_BUCKET
+          value: {{ .Values.influxdb.auth.admin.bucket}}
+        - name: INFLUXDB_TOKEN
+          value: {{ .Values.influxdb.auth.admin.token }}
