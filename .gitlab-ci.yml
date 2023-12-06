@@ -1,0 +1,15 @@
+stages:
+  - release
+
+image: moreillon/ci-dind:v1.0.3
+services:
+  - name: docker:24.0.7-dind
+
+release-job:
+  stage: release
+  only:
+    - internal
+  tags:
+    - internal-dind
+  script:
+    - bash release.sh
