@@ -12,8 +12,4 @@ release-job:
   tags:
     - internal-dind
   script:
-    - >
-      for d in */ ; do
-        read CHART_ARCHIVE <<< $(helm package . | awk -F'Successfully packaged chart and saved it to: ' '{print $2}')
-        curl --data-binary "@${CHART_ARCHIVE}" http://172.16.98.151:30588/api/charts
-      done
+    - bash release.sh
