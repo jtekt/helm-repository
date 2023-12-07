@@ -193,4 +193,21 @@ entries:
     urls:
     - https://github.com/jtekt/helm-repository/releases/download/polygonal-annotation-tool-0.1.0/polygonal-annotation-tool-0.1.0.tgz
     version: 0.1.0
-generated: "2023-09-11T00:43:31.219743802Z"
+  time-series-storage:
+  - apiVersion: v2
+    appVersion: v1.5.1
+    created: "2023-12-07T00:48:55.11476863Z"
+    dependencies:
+    - condition: influxdb.enabled
+      name: influxdb
+      repository: https://charts.bitnami.com/bitnami
+      version: 5.4.16
+    description: A Helm chart for Kubernetes
+    digest: a9caa8ad24eeb1d7ad7f27ac88b17ade4497006a9a73665063bafc0b373c5995
+    icon: http://10.115.1.100:31041/images/63fd44bdfa7970e8a5c9adfe
+    name: time-series-storage
+    type: application
+    urls:
+    - https://github.com/jtekt/helm-repository/releases/download/time-series-storage-0.1.1/time-series-storage-0.1.1.tgz
+    version: 0.1.1
+generated: "2023-12-07T00:48:55.114787546Z"
