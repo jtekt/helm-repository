@@ -2,6 +2,6 @@ apiVersion: v2
 name: annotation-tool
 description: A Helm chart to deploy the JTEKT annotation tool
 type: application
-version: 0.1.3
+version: 0.1.4
 appVersion: "1.16.0"
 icon: https://raw.githubusercontent.com/jtekt/helm-repository/master/charts/annotation-tool/icon.png
