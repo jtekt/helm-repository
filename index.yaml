@@ -1,0 +1,66 @@
+apiVersion: v1
+entries:
+  annotation-tool:
+  - apiVersion: v2
+    appVersion: ef974ad9
+    created: "2023-12-07T04:40:12.294568206Z"
+    description: A Helm chart to deploy the JTEKT annotation tool
+    digest: 1dfd94c3ccdf179c42d4d4d421df23fb9dbf4841cea33ab71bc9e30cd224a2f4
+    icon: https://raw.githubusercontent.com/jtekt/helm-repository/master/charts/annotation-tool/icon.png
+    name: annotation-tool
+    type: application
+    urls:
+    - https://github.com/jtekt/helm-repository/releases/download/annotation-tool-0.1.5/annotation-tool-0.1.5.tgz
+    version: 0.1.5
+  image-storage-service:
+  - apiVersion: v2
+    appVersion: v1.11.2
+    created: "2023-12-07T04:40:12.477398004Z"
+    dependencies:
+    - condition: mongodb.enabled
+      name: mongodb
+      repository: https://charts.bitnami.com/bitnami
+      version: 13.15.1
+    - alias: auth
+      condition: auth.enabled
+      name: user-manager-mongodb
+      repository: https://maximemoreillon.github.io/helm-repository
+      version: 0.3.5
+    description: Helm chart for the Image Storage Service
+    digest: 7fda5d28848c2c8db37c7c5fc43bc754a5e53411e1629beb671905be68e5665f
+    icon: https://raw.githubusercontent.com/jtekt/helm-repository/master/charts/image-storage-service/icon.png
+    name: image-storage-service
+    type: application
+    urls:
+    - https://github.com/jtekt/helm-repository/releases/download/image-storage-service-0.2.15/image-storage-service-0.2.15.tgz
+    version: 0.2.15
+  polygonal-annotation-tool:
+  - apiVersion: v2
+    appVersion: a3fa9360
+    created: "2023-12-07T04:40:12.6208855Z"
+    description: A Helm chart to deploy the JTEKT polygonal annotation tool
+    digest: 7e64768f03f1ff02569db9a7eed149a673ceeda18daa5c7b0dc5bb15d4489a6d
+    icon: https://raw.githubusercontent.com/jtekt/helm-repository/master/charts/polygonal-annotation-tool/icon.png
+    name: polygonal-annotation-tool
+    type: application
+    urls:
+    - https://github.com/jtekt/helm-repository/releases/download/polygonal-annotation-tool-0.1.5/polygonal-annotation-tool-0.1.5.tgz
+    version: 0.1.5
+  time-series-storage:
+  - apiVersion: v2
+    appVersion: v1.5.1
+    created: "2023-12-07T04:40:12.779690567Z"
+    dependencies:
+    - condition: influxdb.enabled
+      name: influxdb
+      repository: https://charts.bitnami.com/bitnami
+      version: 5.4.16
+    description: A Helm chart for Kubernetes
+    digest: 19989c9f54703b21a5a49ec4aac292639654ed354be46885dd26f998048dc3b0
+    icon: http://10.115.1.100:31041/images/63fd44bdfa7970e8a5c9adfe
+    name: time-series-storage
+    type: application
+    urls:
+    - https://github.com/jtekt/helm-repository/releases/download/time-series-storage-0.1.7/time-series-storage-0.1.7.tgz
+    version: 0.1.7
+generated: "2023-12-07T04:40:12.779699434Z"
