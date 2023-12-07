@@ -73,7 +73,6 @@ entries:
       version: 5.4.16
     description: A Helm chart for Kubernetes
     digest: bb4dc02e97678dd0967b0327620e9278fe38b94155145b93146f39120f5edba7
-    icon: http://10.115.1.100:31041/images/63fd44bdfa7970e8a5c9adfe
     name: time-series-storage
     type: application
     urls:
@@ -89,7 +88,6 @@ entries:
       version: 5.4.16
     description: A Helm chart for Kubernetes
     digest: 19989c9f54703b21a5a49ec4aac292639654ed354be46885dd26f998048dc3b0
-    icon: http://10.115.1.100:31041/images/63fd44bdfa7970e8a5c9adfe
     name: time-series-storage
     type: application
     urls:
