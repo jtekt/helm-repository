@@ -49,6 +49,22 @@ entries:
   time-series-storage:
   - apiVersion: v2
     appVersion: v1.5.1
+    created: "2023-12-07T04:43:13.384062485Z"
+    dependencies:
+    - condition: influxdb.enabled
+      name: influxdb
+      repository: https://charts.bitnami.com/bitnami
+      version: 5.4.16
+    description: A Helm chart for Kubernetes
+    digest: bb4dc02e97678dd0967b0327620e9278fe38b94155145b93146f39120f5edba7
+    icon: http://10.115.1.100:31041/images/63fd44bdfa7970e8a5c9adfe
+    name: time-series-storage
+    type: application
+    urls:
+    - https://github.com/jtekt/helm-repository/releases/download/time-series-storage-0.1.8/time-series-storage-0.1.8.tgz
+    version: 0.1.8
+  - apiVersion: v2
+    appVersion: v1.5.1
     created: "2023-12-07T04:40:12.779690567Z"
     dependencies:
     - condition: influxdb.enabled
@@ -63,4 +79,4 @@ entries:
     urls:
     - https://github.com/jtekt/helm-repository/releases/download/time-series-storage-0.1.7/time-series-storage-0.1.7.tgz
     version: 0.1.7
-generated: "2023-12-07T04:40:12.779699434Z"
+generated: "2023-12-07T04:43:13.38407601Z"
