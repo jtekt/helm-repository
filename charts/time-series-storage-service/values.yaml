@@ -3,6 +3,7 @@ image:
 
 service:
   type: NodePort
+  nodePort: 30321
 
 influxdb:
   enabled: true
