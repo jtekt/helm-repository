@@ -4,7 +4,7 @@ description: Helm chart for the Image Storage Service
 
 type: application
 
-version: 0.2.14
+version: 0.2.15
 
 appVersion: "v1.11.2"
 
