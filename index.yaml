@@ -3,6 +3,17 @@ entries:
   annotation-tool:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-12-07T03:00:05.866618768Z"
+    description: A Helm chart to deploy the JTEKT annotation tool
+    digest: 66164ff403d2bd862f54f643945d78eeb9fb5b34c3b2a055a2251e6e7d6712b5
+    icon: https://raw.githubusercontent.com/jtekt/helm-repository/master/charts/annotation-tool/icon.png
+    name: annotation-tool
+    type: application
+    urls:
+    - https://github.com/jtekt/helm-repository/releases/download/annotation-tool-0.1.4/annotation-tool-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-12-07T02:36:09.574917244Z"
     description: A Helm chart to deploy the JTEKT annotation tool
     digest: eb51c8d6c37bd401f3aa39079fdb126cb247bc9ca8f05e990c2a6ec3eeb86a2c
@@ -45,6 +56,27 @@ entries:
     - https://github.com/jtekt/helm-repository/releases/download/annotation-tool-0.1.0/annotation-tool-0.1.0.tgz
     version: 0.1.0
   image-storage-service:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-12-07T03:00:06.017028448Z"
+    dependencies:
+    - condition: mongodb.enabled
+      name: mongodb
+      repository: https://charts.bitnami.com/bitnami
+      version: 13.15.1
+    - alias: auth
+      condition: auth.enabled
+      name: user-manager-mongodb
+      repository: https://maximemoreillon.github.io/helm-repository
+      version: 0.3.5
+    description: Helm chart for the Image Storage Service
+    digest: a28b88f71755763fe753a20fcca735cf17d38a9cb39c3ef514d23360bdf2b096
+    icon: https://raw.githubusercontent.com/jtekt/helm-repository/master/charts/image-storage-service/icon.png
+    name: image-storage-service
+    type: application
+    urls:
+    - https://github.com/jtekt/helm-repository/releases/download/image-storage-service-0.2.13/image-storage-service-0.2.13.tgz
+    version: 0.2.13
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2023-12-07T02:36:09.830113747Z"
@@ -216,6 +248,17 @@ entries:
   polygonal-annotation-tool:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-12-07T03:00:06.156025165Z"
+    description: A Helm chart to deploy the JTEKT polygonal annotation tool
+    digest: 77140e35150a2d465a2f4ba8ceaa2bc2928b2567e4a98156be5924997b0765e9
+    icon: https://raw.githubusercontent.com/jtekt/helm-repository/master/charts/polygonal-annotation-tool/icon.png
+    name: polygonal-annotation-tool
+    type: application
+    urls:
+    - https://github.com/jtekt/helm-repository/releases/download/polygonal-annotation-tool-0.1.2/polygonal-annotation-tool-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-12-07T02:36:10.030627233Z"
     description: A Helm chart to deploy the JTEKT polygonal annotation tool
     digest: 2067ce188a4e3142615d88011b00264d298926bfc67e1625da7a36404347b257
@@ -237,6 +280,22 @@ entries:
     - https://github.com/jtekt/helm-repository/releases/download/polygonal-annotation-tool-0.1.0/polygonal-annotation-tool-0.1.0.tgz
     version: 0.1.0
   time-series-storage:
+  - apiVersion: v2
+    appVersion: v1.5.1
+    created: "2023-12-07T03:00:06.281291392Z"
+    dependencies:
+    - condition: influxdb.enabled
+      name: influxdb
+      repository: https://charts.bitnami.com/bitnami
+      version: 5.4.16
+    description: A Helm chart for Kubernetes
+    digest: f7c6dce19938f2edeb505c87538ee6d1db3fc288f617589c60189a3f2963e650
+    icon: http://10.115.1.100:31041/images/63fd44bdfa7970e8a5c9adfe
+    name: time-series-storage
+    type: application
+    urls:
+    - https://github.com/jtekt/helm-repository/releases/download/time-series-storage-0.1.3/time-series-storage-0.1.3.tgz
+    version: 0.1.3
   - apiVersion: v2
     appVersion: v1.5.1
     created: "2023-12-07T02:36:10.269318547Z"
@@ -269,4 +328,4 @@ entries:
     urls:
     - https://github.com/jtekt/helm-repository/releases/download/time-series-storage-0.1.1/time-series-storage-0.1.1.tgz
     version: 0.1.1
-generated: "2023-12-07T02:36:10.269378199Z"
+generated: "2023-12-07T03:00:06.281384683Z"
