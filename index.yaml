@@ -57,6 +57,17 @@ entries:
     version: 0.2.13
   polygonal-annotation-tool:
   - apiVersion: v2
+    appVersion: a3fa9360
+    created: "2023-12-07T04:21:31.491738722Z"
+    description: A Helm chart to deploy the JTEKT polygonal annotation tool
+    digest: ceb1ceba321cd48519fdb6d9ff5f9c9faa3dd7733b46849e8036ef2fdd4b23a2
+    icon: https://raw.githubusercontent.com/jtekt/helm-repository/master/charts/polygonal-annotation-tool/icon.png
+    name: polygonal-annotation-tool
+    type: application
+    urls:
+    - https://github.com/jtekt/helm-repository/releases/download/polygonal-annotation-tool-0.1.4/polygonal-annotation-tool-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
     appVersion: 1.16.0
     created: "2023-12-07T03:58:51.39863912Z"
     description: A Helm chart to deploy the JTEKT polygonal annotation tool
@@ -100,4 +111,4 @@ entries:
     urls:
     - https://github.com/jtekt/helm-repository/releases/download/time-series-storage-0.1.5/time-series-storage-0.1.5.tgz
     version: 0.1.5
-generated: "2023-12-07T04:08:57.272673754Z"
+generated: "2023-12-07T04:21:31.491756385Z"
