@@ -1,0 +1,17 @@
+image:
+  repository: public.ecr.aws/jtekt-corporation/time-series-storage-service
+
+service:
+  type: NodePort
+
+influxdb:
+  enabled: true
+  auth:
+    admin:
+      username: admin
+      password: keyboardcat
+      token: 5Qlnkzp3kW6RDVMHlktMzDCQEG5CBGHf59J-5x5lK2g9BVCtoYdgrI9aqnYi5fNIB0EfJoUDQ0bWHkGqkr5qRA==
+      org: jtekt
+      bucket: time-series-storage
+  persistence:
+    size: 50Gi
