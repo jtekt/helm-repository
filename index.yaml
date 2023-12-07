@@ -14,6 +14,27 @@ entries:
     version: 0.1.4
   image-storage-service:
   - apiVersion: v2
+    appVersion: v1.11.2
+    created: "2023-12-07T04:08:56.850545072Z"
+    dependencies:
+    - condition: mongodb.enabled
+      name: mongodb
+      repository: https://charts.bitnami.com/bitnami
+      version: 13.15.1
+    - alias: auth
+      condition: auth.enabled
+      name: user-manager-mongodb
+      repository: https://maximemoreillon.github.io/helm-repository
+      version: 0.3.5
+    description: Helm chart for the Image Storage Service
+    digest: d4fa4c3483b520ee738485fe2981ab04d6b69b4a83007efdfb8f17e20c374a01
+    icon: https://raw.githubusercontent.com/jtekt/helm-repository/master/charts/image-storage-service/icon.png
+    name: image-storage-service
+    type: application
+    urls:
+    - https://github.com/jtekt/helm-repository/releases/download/image-storage-service-0.2.14/image-storage-service-0.2.14.tgz
+    version: 0.2.14
+  - apiVersion: v2
     appVersion: 1.16.0
     created: "2023-12-07T03:58:51.187646241Z"
     dependencies:
@@ -49,6 +70,22 @@ entries:
   time-series-storage:
   - apiVersion: v2
     appVersion: v1.5.1
+    created: "2023-12-07T04:08:57.272653977Z"
+    dependencies:
+    - condition: influxdb.enabled
+      name: influxdb
+      repository: https://charts.bitnami.com/bitnami
+      version: 5.4.16
+    description: A Helm chart for Kubernetes
+    digest: 90ab38f8181a216f9b5ed81a6a56aa2413fead7cce6eafdcfc80bb2d77131060
+    icon: http://10.115.1.100:31041/images/63fd44bdfa7970e8a5c9adfe
+    name: time-series-storage
+    type: application
+    urls:
+    - https://github.com/jtekt/helm-repository/releases/download/time-series-storage-0.1.6/time-series-storage-0.1.6.tgz
+    version: 0.1.6
+  - apiVersion: v2
+    appVersion: v1.5.1
     created: "2023-12-07T03:58:51.61038911Z"
     dependencies:
     - condition: influxdb.enabled
@@ -63,4 +100,4 @@ entries:
     urls:
     - https://github.com/jtekt/helm-repository/releases/download/time-series-storage-0.1.5/time-series-storage-0.1.5.tgz
     version: 0.1.5
-generated: "2023-12-07T03:58:51.610397886Z"
+generated: "2023-12-07T04:08:57.272673754Z"
