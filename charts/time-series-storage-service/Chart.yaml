@@ -15,7 +15,7 @@ type: application
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 0.1.8
+version: 0.1.9
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
@@ -23,7 +23,7 @@ version: 0.1.8
 # It is recommended to use it with quotes.
 appVersion: "v1.5.1"
 
-icon: http://10.115.1.100:31041/images/63fd44bdfa7970e8a5c9adfe
+icon: https://raw.githubusercontent.com/jtekt/helm-repository/master/charts/time-series-storage-service/icon.png
 
 dependencies:
   # NOTE: The official Influxdata helm chart seems to be for v1.8.x
