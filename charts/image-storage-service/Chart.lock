@@ -1,9 +1,9 @@
 dependencies:
 - name: mongodb
   repository: https://charts.bitnami.com/bitnami
-  version: 13.15.1
+  version: 13.18.5
 - name: user-manager-mongodb
   repository: https://maximemoreillon.github.io/helm-repository
   version: 0.3.5
-digest: sha256:97cbe62cb46a3f94d3a678ef68a47999cc61b495124ec9a5bada2faa8e961ce9
-generated: "2023-05-30T16:08:55.886171737+09:00"
+digest: sha256:c5856449538ce51380a7a87804dc5b9b5b60d1fc50441adfa2a76d7d41de927d
+generated: "2023-12-08T14:15:39.202757906+09:00"

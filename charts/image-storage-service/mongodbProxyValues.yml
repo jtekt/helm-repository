@@ -1,0 +1,8 @@
+mongodb:
+  extraEnvVars:
+    - name: HTTP_PROXY
+      value: http://172.16.105.13:8118
+    - name: HTTPS_PROXY
+      value: http://172.16.105.13:8118
+    - name: NO_RPOXY
+      value: 127.0.0.1,localhost
