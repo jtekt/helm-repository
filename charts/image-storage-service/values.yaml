@@ -1,6 +1,6 @@
 nameOverride: iss
 
-image: public.ecr.aws/jtekt-corporation/image-storage-service:v1.16.2
+image: public.ecr.aws/jtekt-corporation/image-storage-service:v1.16.4
 
 gui:
   image: public.ecr.aws/jtekt-corporation/image-storage-service-gui:v1.4.6
