@@ -21,6 +21,12 @@ ingress:
 
 mongodb:
   enabled: true
+  arbiter:
+    enabled: false
+  livenessProbe:
+    enabled: false
+  readinessProbe:
+    enabled: false
   persistence:
     size: 100Gi
   auth:
