@@ -15,6 +15,27 @@ entries:
   image-storage-service:
   - apiVersion: v2
     appVersion: v1.16.9
+    created: "2024-02-13T04:35:35.683355376Z"
+    dependencies:
+    - condition: mongodb.enabled
+      name: mongodb
+      repository: https://charts.bitnami.com/bitnami
+      version: 13.8.1
+    - alias: auth
+      condition: auth.enabled
+      name: user-manager-mongodb
+      repository: https://maximemoreillon.github.io/helm-repository
+      version: 0.3.5
+    description: Helm chart for the Image Storage Service
+    digest: 89c5e62eabeb95f5a254097afbdccde8867c4113a1dd9cdb30bd2736bf077260
+    icon: https://raw.githubusercontent.com/jtekt/helm-repository/master/charts/image-storage-service/icon.png
+    name: image-storage-service
+    type: application
+    urls:
+    - https://github.com/jtekt/helm-repository/releases/download/image-storage-service-0.2.22/image-storage-service-0.2.22.tgz
+    version: 0.2.22
+  - apiVersion: v2
+    appVersion: v1.16.9
     created: "2024-02-13T03:09:07.440822353Z"
     dependencies:
     - condition: mongodb.enabled
@@ -219,4 +240,4 @@ entries:
     urls:
     - https://github.com/jtekt/helm-repository/releases/download/time-series-storage-0.1.7/time-series-storage-0.1.7.tgz
     version: 0.1.7
-generated: "2024-02-13T03:09:07.440860164Z"
+generated: "2024-02-13T04:35:35.68338433Z"
