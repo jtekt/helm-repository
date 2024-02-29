@@ -3,7 +3,7 @@ nameOverride: iss
 image: public.ecr.aws/jtekt-corporation/image-storage-service:v1.16.9
 
 gui:
-  image: public.ecr.aws/jtekt-corporation/image-storage-service-gui:v1.8.1
+  image: public.ecr.aws/jtekt-corporation/image-storage-service-gui:v1.8.2
 
 service:
   type: NodePort
