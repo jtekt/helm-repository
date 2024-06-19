@@ -4,7 +4,7 @@ description: Helm chart for the Image Storage Service
 
 type: application
 
-version: 0.2.29
+version: 0.3.0
 
 appVersion: "v1.16.9"
 
@@ -20,3 +20,7 @@ dependencies:
     repository: https://maximemoreillon.github.io/helm-repository
     condition: auth.enabled
     alias: auth
+  - name: kong
+    version: 2.39.2
+    repository: https://charts.konghq.com
+    condition: kong.enabled

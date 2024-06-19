@@ -1,4 +1,4 @@
-{{ $fullName := printf "%s-gui" (include "image-storage-service.prefix" .) | trunc 63 | trunc 63 | trimSuffix "-" }}
+{{ $fullName := printf "%s-gui" (include "image-storage-service.prefix" .) | trunc 63 | trimSuffix "-" }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:

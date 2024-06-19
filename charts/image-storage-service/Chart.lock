@@ -5,5 +5,8 @@ dependencies:
 - name: user-manager-mongodb
   repository: https://maximemoreillon.github.io/helm-repository
   version: 0.3.5
-digest: sha256:c5856449538ce51380a7a87804dc5b9b5b60d1fc50441adfa2a76d7d41de927d
-generated: "2024-02-13T13:44:05.701300171+09:00"
+- name: kong
+  repository: https://charts.konghq.com
+  version: 2.39.2
+digest: sha256:293133168640ceb04aa336a560699622985bcf40d91d7f6cbecc3f52374a8eec
+generated: "2024-06-19T08:58:08.765389944+09:00"

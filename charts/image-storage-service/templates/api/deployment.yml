@@ -1,4 +1,4 @@
-{{ $fullName := printf "%s-back" (include "image-storage-service.prefix" .) | trunc 63 | trimSuffix "-" }}
+{{ $fullName := printf "%s-api" (include "image-storage-service.prefix" .) | trunc 63 | trimSuffix "-" }}
 {{ $mongodbUrl := include "image-storage-service.mongodb.url" . }}
 apiVersion: apps/v1
 kind: Deployment

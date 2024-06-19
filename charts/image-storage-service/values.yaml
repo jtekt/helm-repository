@@ -1,23 +1,12 @@
-nameOverride: iss
+# nameOverride: iss
 
 image: public.ecr.aws/jtekt-corporation/image-storage-service:v1.16.9
 
 gui:
   image: public.ecr.aws/jtekt-corporation/image-storage-service-gui:v1.8.2
 
-service:
-  type: NodePort
-  nodePort: 32101
-
 persistence:
-  size: 100Gi
-
-ingress:
-  enabled: false
-  #host: images.example.com
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: letsencrypt-prod
+  size: 20Gi
 
 mongodb:
   enabled: true
@@ -28,7 +17,7 @@ mongodb:
   readinessProbe:
     enabled: false
   persistence:
-    size: 100Gi
+    size: 10Gi
   auth:
     enabled: false
     rootPassword: banana
@@ -37,3 +26,22 @@ auth:
   enabled: false
   mongodb:
     enabled: false
+
+kong:
+  admin:
+    enabled: false # Do not create a service for the admin API
+  manager:
+    enabled: false # Do not create a service for Kong Manager
+  ingressController:
+    enabled: false
+  env:
+    database: "off"
+    dns_order: A,CNAME,LAST,SRV
+  dblessConfig:
+    configMap: kong-config
+  proxy:
+    type: NodePort
+    http:
+      nodePort: 30107
+    tls:
+      enabled: false

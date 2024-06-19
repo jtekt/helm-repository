@@ -1,0 +1,24 @@
+{{ $guiFullName := printf "%s-gui" (include "image-storage-service.prefix" .) | trunc 63 | trimSuffix "-" }}
+{{ $apiFullName := printf "%s-api" (include "image-storage-service.prefix" .) | trunc 63 | trimSuffix "-" }}
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.kong.dblessConfig.configMap }}
+data:
+  kong.yml: |
+    _format_version: "3.0"
+    _transform: true
+    services:
+    - name: gui
+      url: http://{{ $guiFullName }}
+      routes:
+      - name: gui
+        paths:
+        - /
+    - name: api
+      url: http://{{ $apiFullName  }}
+      routes:
+      - name: api
+        paths:
+        - /api
