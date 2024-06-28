@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: group-manager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: group-manager
+  template:
+    metadata:
+      labels:
+        app: group-manager
+    spec:
+      containers:
+      - name: group-manager
+        image: moreillon/group-manager
+        ports:
+        - containerPort: 80
+        envFrom:
+        - secretRef:
+           name: environment-variables

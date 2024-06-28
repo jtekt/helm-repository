@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shinsei-manager-front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shinsei-manager-front
+  template:
+    metadata:
+      labels:
+        app: shinsei-manager-front
+    spec:
+      containers:
+      - name: shinsei-manager-front
+        image: moreillon/shinsei-manager-front
+        ports:
+        - containerPort: 80
+        envFrom:
+        - secretRef:
+           name: environment-variables

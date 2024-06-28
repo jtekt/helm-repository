@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: neo4j
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: neo4j
+  template:
+    metadata:
+      labels:
+        app: neo4j
+    spec:
+      volumes:
+      - name: neo4j
+        persistentVolumeClaim:
+          claimName: neo4j
+      containers:
+      - name: neo4j
+        image: neo4j
+        env:
+        - name: NEO4J_AUTH
+          value: {{ .Values.neo4j.username }}/{{ .Values.neo4j.password }}
+        ports:
+        - containerPort: 7474 # Browser
+        - containerPort: 7687 # Bolt
+        volumeMounts:
+        - mountPath: "/data"
+          name: neo4j

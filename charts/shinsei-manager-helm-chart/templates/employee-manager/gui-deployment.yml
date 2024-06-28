@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employee-manager-front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: employee-manager-front
+  template:
+    metadata:
+      labels:
+        app: employee-manager-front
+    spec:
+      containers:
+      - name: employee-manager-front
+        image: moreillon/employee-manager-front-vuetify:7ef59e4e
+        ports:
+        - containerPort: 80
+        envFrom:
+        - secretRef:
+           name: environment-variables

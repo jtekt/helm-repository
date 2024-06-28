@@ -1,0 +1,22 @@
+# Default values for shinsei-manager.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+neo4j:
+  username: neo4j
+  password: neo4Jpassword
+
+adminAccount:
+  username: admin
+  password: admin
+
+token_secret: keyboardcat
+
+ports:
+  shinseiManagerGui: 30018
+  groupManager: 30019
+  employeeManager: 30020
+
+storage:
+  neo4j: 100Gi
+  shinseiManager: 100Gi

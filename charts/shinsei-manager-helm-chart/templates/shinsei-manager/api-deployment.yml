@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shinsei-manager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shinsei-manager
+  template:
+    metadata:
+      labels:
+        app: shinsei-manager
+    spec:
+      volumes:
+      - name: shinsei-manager
+        persistentVolumeClaim:
+          claimName: shinsei-manager
+      containers:
+      - name: shinsei-manager
+        image: moreillon/shinsei-manager
+        ports:
+        - containerPort: 80
+        envFrom:
+        - secretRef:
+           name: environment-variables
+        volumeMounts:
+        - mountPath: "/usr/share/pv"
+          name: shinsei-manager

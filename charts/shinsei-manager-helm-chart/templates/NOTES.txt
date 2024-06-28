@@ -1,0 +1,5 @@
+Shinsei manager
+Ports:
+- Employee manager GUI {{ .Values.ports.employeeManager }}
+- Shinsei manager GUI {{ .Values.ports.shinseiManagerGui }}
+- Group manager GUI: {{ .Values.ports.groupManager }}

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employee-manager-api-proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: employee-manager-api-proxy
+  template:
+    metadata:
+      labels:
+        app: employee-manager-api-proxy
+    spec:
+      containers:
+      - name: employee-manager-api-proxy
+        image: moreillon/api-proxy
+        ports:
+        - containerPort: 80
+        envFrom:
+        - secretRef:
+           name: environment-variables
+        env:
+        - name: PROXY_ROOT
+          value: http://employee-manager-front

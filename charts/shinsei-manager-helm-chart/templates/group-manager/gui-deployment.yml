@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: group-manager-front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: group-manager-front
+  template:
+    metadata:
+      labels:
+        app: group-manager-front
+    spec:
+      containers:
+      - name: group-manager-front
+        image: moreillon/group-manager-front
+        ports:
+        - containerPort: 80
+        envFrom:
+        - secretRef:
+           name: environment-variables
