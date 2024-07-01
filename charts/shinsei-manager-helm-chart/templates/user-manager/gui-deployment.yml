@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: shinsei-manager-front
+  name: user-manager-front
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: shinsei-manager-front
+      app: user-manager-front
   template:
     metadata:
       labels:
-        app: shinsei-manager-front
+        app: user-manager-front
     spec:
       containers:
-        - name: shinsei-manager-front
-          image: public.ecr.aws/jtekt-corporation/shinsei-manager-front:v1.5.5
+        - name: user-manager-front
+          image: moreillon/user-manager-front:v5.0.3
           ports:
             - containerPort: 80
           envFrom:

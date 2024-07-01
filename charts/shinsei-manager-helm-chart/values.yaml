@@ -15,7 +15,7 @@ token_secret: keyboardcat
 ports:
   shinseiManagerGui: 30018
   groupManager: 30019
-  employeeManager: 30020
+  userManager: 30020
 
 storage:
   neo4j: 100Gi

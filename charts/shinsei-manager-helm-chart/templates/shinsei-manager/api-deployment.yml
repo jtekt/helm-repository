@@ -13,17 +13,17 @@ spec:
         app: shinsei-manager
     spec:
       volumes:
-      - name: shinsei-manager
-        persistentVolumeClaim:
-          claimName: shinsei-manager
+        - name: shinsei-manager
+          persistentVolumeClaim:
+            claimName: shinsei-manager
       containers:
-      - name: shinsei-manager
-        image: moreillon/shinsei-manager
-        ports:
-        - containerPort: 80
-        envFrom:
-        - secretRef:
-           name: environment-variables
-        volumeMounts:
-        - mountPath: "/usr/share/pv"
-          name: shinsei-manager
+        - name: shinsei-manager
+          image: public.ecr.aws/jtekt-corporation/shinsei-manager:v2.8.1
+          ports:
+            - containerPort: 80
+          envFrom:
+            - secretRef:
+                name: environment-variables
+          volumeMounts:
+            - mountPath: "/usr/share/pv"
+              name: shinsei-manager

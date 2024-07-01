@@ -18,7 +18,7 @@ spec:
           claimName: neo4j
       containers:
       - name: neo4j
-        image: neo4j
+        image: neo4j:5.12.0
         env:
         - name: NEO4J_AUTH
           value: {{ .Values.neo4j.username }}/{{ .Values.neo4j.password }}
