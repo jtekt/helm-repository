@@ -23,3 +23,5 @@ spec:
           env:
             - name: PROXY_ROOT
               value: http://user-manager-front
+            - name: PROXY_API
+              value: http://user-manager-api

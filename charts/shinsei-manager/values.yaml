@@ -2,9 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-neo4j:
-  username: neo4j
-  password: neo4Jpassword
+
 
 adminAccount:
   username: admin
@@ -20,3 +18,15 @@ ports:
 storage:
   neo4j: 100Gi
   shinseiManager: 100Gi
+
+
+neo4j:
+  enabled: true
+  nameOverride: neo4j
+  neo4j:
+    name: neo4j
+    password: neo4Jpassword
+    acceptLicenseAgreement: "yes"
+  volumes:
+    data:
+      mode: defaultStorageClass

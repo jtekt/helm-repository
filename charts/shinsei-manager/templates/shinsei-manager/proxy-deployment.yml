@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: group-manager-api-proxy
+  name: shinsei-manager-api-proxy
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: group-manager-api-proxy
+      app: shinsei-manager-api-proxy
   template:
     metadata:
       labels:
-        app: group-manager-api-proxy
+        app: shinsei-manager-api-proxy
     spec:
       containers:
-      - name: group-manager-api-proxy
+      - name: shinsei-manager-api-proxy
         image: moreillon/api-proxy
         ports:
         - containerPort: 80
@@ -22,4 +22,8 @@ spec:
            name: environment-variables
         env:
         - name: PROXY_ROOT
-          value: http://group-manager-front
+          value: http://shinsei-manager-front
+        - name: PROXY_API
+          value: http://shinsei-manager-api
+        - name: PROXY_AUTH
+          value: http://user-manager-api

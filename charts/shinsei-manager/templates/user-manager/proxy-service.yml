@@ -8,4 +8,4 @@ spec:
     app: user-manager-api-proxy
   ports:
     - port: 80
-      nodePort: { { .Values.ports.userManager } }
+      nodePort: {{ .Values.ports.userManager }}

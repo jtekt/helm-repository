@@ -29,6 +29,8 @@ jobs:
           helm repo add moreillon https://maximemoreillon.github.io/helm-repository/
           helm repo add bitnami https://charts.bitnami.com/bitnami
           helm repo add kong https://charts.konghq.com
+          helm repo add neo4j-helm-charts https://neo4j.github.io/helm-charts/
+          helm repo add neo4j https://helm.neo4j.com/neo4j
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.6.0
