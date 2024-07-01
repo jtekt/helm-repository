@@ -368,6 +368,16 @@ entries:
   shinsei-manager:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-07-01T04:17:59.375144492Z"
+    description: A Helm chart for Kubernetes
+    digest: c100b881e13aba0888fc7547da55c899e53573118d2ec303b1b001d21194e881
+    name: shinsei-manager
+    type: application
+    urls:
+    - https://github.com/jtekt/helm-repository/releases/download/shinsei-manager-0.1.1/shinsei-manager-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-06-28T03:21:50.723414293Z"
     description: A Helm chart for Kubernetes
     digest: 79c436e6b1dee783b5f35947d535888db2989fb2fbf218509a83bfab13523dd7
@@ -423,4 +433,4 @@ entries:
     urls:
     - https://github.com/jtekt/helm-repository/releases/download/time-series-storage-0.1.7/time-series-storage-0.1.7.tgz
     version: 0.1.7
-generated: "2024-06-28T03:21:50.72346592Z"
+generated: "2024-07-01T04:17:59.3751916Z"
