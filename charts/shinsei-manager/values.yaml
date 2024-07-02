@@ -11,13 +11,13 @@ adminAccount:
 token_secret: keyboardcat
 
 ports:
-  shinseiManagerGui: 30018
+  shinseiManager: 30018
   groupManager: 30019
   userManager: 30020
 
 storage:
-  neo4j: 100Gi
-  shinseiManager: 100Gi
+  neo4j: 10Gi
+  shinseiManager: 10Gi
 
 
 neo4j:

@@ -23,5 +23,5 @@ spec:
         env:
         - name: PROXY_ROOT
           value: http://group-manager-front
-        - name: PROXY_API
-          value: http://group-manager-api
+        - name: IDENTIFICATION_URL
+          value: ""

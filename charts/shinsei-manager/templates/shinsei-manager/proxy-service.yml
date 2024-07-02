@@ -8,4 +8,4 @@ spec:
     app: shinsei-manager-api-proxy
   ports:
   - port: 80
-    nodePort: {{ .Values.ports.shinseiManagerGui }}
+    nodePort: {{ .Values.ports.shinseiManager }}
