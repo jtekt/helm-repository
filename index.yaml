@@ -368,6 +368,21 @@ entries:
   shinsei-manager:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-07-02T00:35:20.087231688Z"
+    dependencies:
+    - condition: neo4j.enabled
+      name: neo4j
+      repository: https://helm.neo4j.com/neo4j
+      version: 5.20.0
+    description: A Helm chart for Kubernetes
+    digest: c1c491cb78946ab95463a84e4f5bee119e89e7bae8b5e98c5e4fb552b8c1626e
+    name: shinsei-manager
+    type: application
+    urls:
+    - https://github.com/jtekt/helm-repository/releases/download/shinsei-manager-0.2.0/shinsei-manager-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-07-01T04:17:59.375144492Z"
     description: A Helm chart for Kubernetes
     digest: c100b881e13aba0888fc7547da55c899e53573118d2ec303b1b001d21194e881
@@ -433,4 +448,4 @@ entries:
     urls:
     - https://github.com/jtekt/helm-repository/releases/download/time-series-storage-0.1.7/time-series-storage-0.1.7.tgz
     version: 0.1.7
-generated: "2024-07-01T04:17:59.3751916Z"
+generated: "2024-07-02T00:35:20.08729169Z"
