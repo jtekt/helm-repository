@@ -16,8 +16,6 @@ spec:
       containers:
       - name: {{include "image-storage-service.prefix" .}}-gui
         image: {{ .Values.gui.image }}
-        ports:
-        - containerPort: 80
         env:
         - name: VUE_APP_IMAGE_STORAGE_API_URL
           value: /api
