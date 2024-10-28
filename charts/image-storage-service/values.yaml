@@ -1,14 +1,15 @@
 # nameOverride: iss
 
-image: public.ecr.aws/jtekt-corporation/image-storage-service:v1.16.9
+image: public.ecr.aws/jtekt-corporation/image-storage-service:v1.16.14
 
 gui:
-  image: public.ecr.aws/jtekt-corporation/image-storage-service-gui:v1.8.2
+  image: public.ecr.aws/jtekt-corporation/image-storage-service-gui:v1.9.4
 
 persistence:
   size: 20Gi
 
 mongodb:
+  # connectionString: mongodb://localhost:27017/image_storage
   enabled: true
   arbiter:
     enabled: false

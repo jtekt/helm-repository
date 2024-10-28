@@ -1,10 +1,10 @@
 {{/* CURRENTLY HARD CODED */}}
-{{- define "image-storage-service.mongodb.url" -}}
-  {{ $externalUrl := default ((.Values.global).mongodb).url (.Values.mongodb).url -}}
-  {{- if $externalUrl -}}
-    {{ $externalUrl }}
+{{- define "image-storage-service.mongodb.connectionString" -}}
+  {{ $externalconnectionString := default ((.Values.global).mongodb).connectionString (.Values.mongodb).connectionString -}}
+  {{- if $externalconnectionString -}}
+    {{ $externalconnectionString }}
   {{- else -}}
     {{ $mongodbName := "mongodb" }}
-    {{- printf "mongodb://%s-%s" .Release.Name $mongodbName }}
+    {{- printf "mongodb://%s-%s/image_storage" .Release.Name $mongodbName }}
   {{- end -}}
 {{- end -}}

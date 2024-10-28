@@ -4,9 +4,9 @@ description: Helm chart for the Image Storage Service
 
 type: application
 
-version: 0.3.0
+version: 0.4.0
 
-appVersion: "v1.16.9"
+appVersion: "v1.16.14"
 
 icon: https://raw.githubusercontent.com/jtekt/helm-repository/master/charts/image-storage-service/icon.png
 

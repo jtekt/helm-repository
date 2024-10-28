@@ -1,5 +1,5 @@
 {{ $fullName := printf "%s-api" (include "image-storage-service.prefix" .) | trunc 63 | trimSuffix "-" }}
-{{ $mongodbUrl := include "image-storage-service.mongodb.url" . }}
+{{ $mongodbConnectionString := include "image-storage-service.mongodb.connectionString" . }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -17,11 +17,9 @@ spec:
       containers:
       - name: {{ $fullName }}
         image: {{ .Values.image }}
-        ports:
-        - containerPort: 80
         env:
-        - name: MONGODB_URL
-          value: {{ $mongodbUrl }}
+        - name: MONGODB_CONNECTION_STRING
+          value: {{ $mongodbConnectionString }}
         {{ if .Values.auth.enabled }}
         - name: AUTHENTICATION_URL
           value: http://{{ printf "%s-auth-api" .Release.Name | trunc 63 | trimSuffix "-" }}/users/self
