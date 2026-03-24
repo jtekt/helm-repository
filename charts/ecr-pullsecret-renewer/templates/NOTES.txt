@@ -1,0 +1,19 @@
+ECR Pull Secret Renewer has been deployed.
+
+A CronJob running on schedule "{{ .Values.schedule }}" will renew ECR pull secrets
+in every namespace of this cluster.
+
+To check the CronJob status:
+  kubectl get cronjob --namespace {{ .Release.Namespace }} {{ include "ecr-pullsecret-renewer.fullname" . }}
+
+To view recent Job runs:
+  kubectl get jobs --namespace {{ .Release.Namespace }} -l app.kubernetes.io/instance={{ .Release.Name }}
+
+To trigger the job manually:
+  kubectl create job --namespace {{ .Release.Namespace }} --from=cronjob/{{ include "ecr-pullsecret-renewer.fullname" . }} ecr-renew-manual
+
+Make sure the following variables are provided via env or envFrom:
+  AWS_ACCESS_KEY_ID
+  AWS_SECRET_ACCESS_KEY
+  AWS_DEFAULT_REGION
+  AWS_ECR_URL
