@@ -12,6 +12,18 @@ entries:
     urls:
     - https://github.com/jtekt/helm-repository/releases/download/annotation-tool-0.1.5/annotation-tool-0.1.5.tgz
     version: 0.1.5
+  ecr-pullsecret-renewer:
+  - apiVersion: v2
+    appVersion: latest
+    created: "2026-03-24T22:29:38.402599576Z"
+    description: Deploys a CronJob that periodically renews ECR pull secrets across
+      all namespaces
+    digest: 42d17cf0df9a259fb0168edcb08bb2d853d34036794b91900ab5617ae773a268
+    name: ecr-pullsecret-renewer
+    type: application
+    urls:
+    - https://github.com/jtekt/helm-repository/releases/download/ecr-pullsecret-renewer-0.1.0/ecr-pullsecret-renewer-0.1.0.tgz
+    version: 0.1.0
   image-storage-service:
   - apiVersion: v2
     appVersion: v1.16.17
@@ -544,4 +556,4 @@ entries:
     urls:
     - https://github.com/jtekt/helm-repository/releases/download/time-series-storage-0.1.7/time-series-storage-0.1.7.tgz
     version: 0.1.7
-generated: "2026-03-24T03:33:30.810282136Z"
+generated: "2026-03-24T22:29:38.402666485Z"
