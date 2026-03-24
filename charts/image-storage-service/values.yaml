@@ -11,6 +11,8 @@ persistence:
 mongodb:
   # connectionString: mongodb://localhost:27017/image_storage
   enabled: true
+  image:
+    repository: bitnamilegacy/mongodb
   arbiter:
     enabled: false
   livenessProbe:
