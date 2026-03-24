@@ -15,6 +15,31 @@ entries:
   image-storage-service:
   - apiVersion: v2
     appVersion: v1.16.17
+    created: "2026-03-24T03:33:30.60026254Z"
+    dependencies:
+    - condition: mongodb.enabled
+      name: mongodb
+      repository: https://charts.bitnami.com/bitnami
+      version: 13.18.5
+    - alias: auth
+      condition: auth.enabled
+      name: user-manager-mongodb
+      repository: https://maximemoreillon.github.io/helm-repository
+      version: 0.3.5
+    - condition: kong.enabled
+      name: kong
+      repository: https://charts.konghq.com
+      version: 2.39.2
+    description: Helm chart for the Image Storage Service
+    digest: 678c2972ada1b72ef0525d00db260702e51bb940e981d8706f8ae08e1931ec45
+    icon: https://raw.githubusercontent.com/jtekt/helm-repository/master/charts/image-storage-service/icon.png
+    name: image-storage-service
+    type: application
+    urls:
+    - https://github.com/jtekt/helm-repository/releases/download/image-storage-service-0.4.3/image-storage-service-0.4.3.tgz
+    version: 0.4.3
+  - apiVersion: v2
+    appVersion: v1.16.17
     created: "2024-10-28T22:50:54.831237809Z"
     dependencies:
     - condition: mongodb.enabled
@@ -459,6 +484,22 @@ entries:
   time-series-storage:
   - apiVersion: v2
     appVersion: v1.5.1
+    created: "2026-03-24T03:33:30.810112278Z"
+    dependencies:
+    - condition: influxdb.enabled
+      name: influxdb
+      repository: https://charts.bitnami.com/bitnami
+      version: 5.4.16
+    description: A Helm chart for Kubernetes
+    digest: baf0b454de9cd4ed3f0f508253f92943859da6e93c59cec0d8c11d0c2663ba54
+    icon: https://raw.githubusercontent.com/jtekt/helm-repository/master/charts/time-series-storage-service/icon.png
+    name: time-series-storage
+    type: application
+    urls:
+    - https://github.com/jtekt/helm-repository/releases/download/time-series-storage-0.1.10/time-series-storage-0.1.10.tgz
+    version: 0.1.10
+  - apiVersion: v2
+    appVersion: v1.5.1
     created: "2023-12-07T06:11:11.246791565Z"
     dependencies:
     - condition: influxdb.enabled
@@ -503,4 +544,4 @@ entries:
     urls:
     - https://github.com/jtekt/helm-repository/releases/download/time-series-storage-0.1.7/time-series-storage-0.1.7.tgz
     version: 0.1.7
-generated: "2024-10-28T22:50:54.83160209Z"
+generated: "2026-03-24T03:33:30.810282136Z"
