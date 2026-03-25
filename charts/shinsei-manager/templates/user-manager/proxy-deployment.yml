@@ -1,27 +1,47 @@
+{{- $fullName := printf "%s-user-manager-proxy" (include "shinsei-manager.prefix" .) | trunc 63 | trimSuffix "-" }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-manager-api-proxy
+  name: {{ $fullName }}
+  labels:
+    {{- include "shinsei-manager.labels" . | nindent 4 }}
+    app: {{ $fullName }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: user-manager-api-proxy
+      app: {{ $fullName }}
   template:
     metadata:
       labels:
-        app: user-manager-api-proxy
+        app: {{ $fullName }}
     spec:
       containers:
-        - name: user-manager-api-proxy
-          image: moreillon/api-proxy
-          ports:
-            - containerPort: 80
-          envFrom:
-            - secretRef:
-                name: environment-variables
-          env:
-            - name: PROXY_ROOT
-              value: http://user-manager-front
-            - name: IDENTIFICATION_URL
-              value: ""
+      - name: {{ $fullName }}
+        image: {{ .Values.images.userManager.proxy }}
+        ports:
+        - containerPort: 80
+        envFrom:
+        - secretRef:
+            name: {{ include "shinsei-manager.prefix" . }}-env
+        env:
+        - name: PROXY_ROOT
+          value: http://{{ printf "%s-user-manager-front" (include "shinsei-manager.prefix" .) | trunc 63 | trimSuffix "-" }}
+        - name: IDENTIFICATION_URL
+          value: ""
+        {{- with .Values.resources }}
+        resources:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5

@@ -1,29 +1,49 @@
+{{- $fullName := include "shinsei-manager.prefix" . }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: shinsei-manager
+  name: {{ $fullName }}
+  labels:
+    {{- include "shinsei-manager.labels" . | nindent 4 }}
+    app: {{ $fullName }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: shinsei-manager
+      app: {{ $fullName }}
   template:
     metadata:
       labels:
-        app: shinsei-manager
+        app: {{ $fullName }}
     spec:
       volumes:
-        - name: shinsei-manager
+        - name: data
           persistentVolumeClaim:
-            claimName: shinsei-manager
+            claimName: {{ $fullName }}
       containers:
-        - name: shinsei-manager
-          image: public.ecr.aws/jtekt-corporation/shinsei-manager:v2.8.1
-          ports:
-            - containerPort: 80
-          envFrom:
-            - secretRef:
-                name: environment-variables
-          volumeMounts:
-            - mountPath: "/usr/share/pv"
-              name: shinsei-manager
+      - name: {{ $fullName }}
+        image: {{ .Values.images.shinseiManager.api }}
+        ports:
+        - containerPort: 80
+        envFrom:
+        - secretRef:
+            name: {{ $fullName }}-env
+        volumeMounts:
+        - mountPath: "/usr/share/pv"
+          name: data
+        {{- with .Values.resources }}
+        resources:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5

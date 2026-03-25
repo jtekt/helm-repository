@@ -1,10 +1,13 @@
+{{- $fullName := include "shinsei-manager.prefix" . }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: shinsei-manager
+  name: {{ $fullName }}
+  labels:
+    {{- include "shinsei-manager.labels" . | nindent 4 }}
 spec:
   accessModes:
-    - ReadWriteOnce
+  - ReadWriteOnce
   resources:
     requests:
       storage: {{ .Values.storage.shinseiManager }}

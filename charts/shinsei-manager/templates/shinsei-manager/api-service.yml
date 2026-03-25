@@ -1,10 +1,14 @@
+{{- $fullName := include "shinsei-manager.prefix" . }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: shinsei-manager
+  name: {{ $fullName }}
+  labels:
+    {{- include "shinsei-manager.labels" . | nindent 4 }}
+    app: {{ $fullName }}
 spec:
   type: ClusterIP
   selector:
-    app: shinsei-manager
+    app: {{ $fullName }}
   ports:
   - port: 80

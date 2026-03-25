@@ -1,22 +1,42 @@
+{{- $fullName := printf "%s-user-manager-front" (include "shinsei-manager.prefix" .) | trunc 63 | trimSuffix "-" }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-manager-front
+  name: {{ $fullName }}
+  labels:
+    {{- include "shinsei-manager.labels" . | nindent 4 }}
+    app: {{ $fullName }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: user-manager-front
+      app: {{ $fullName }}
   template:
     metadata:
       labels:
-        app: user-manager-front
+        app: {{ $fullName }}
     spec:
       containers:
-        - name: user-manager-front
-          image: moreillon/user-manager-front:v5.0.3
-          ports:
-            - containerPort: 80
-          envFrom:
-            - secretRef:
-                name: environment-variables
+      - name: {{ $fullName }}
+        image: {{ .Values.images.userManager.gui }}
+        ports:
+        - containerPort: 80
+        envFrom:
+        - secretRef:
+            name: {{ include "shinsei-manager.prefix" . }}-env
+        {{- with .Values.resources }}
+        resources:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5

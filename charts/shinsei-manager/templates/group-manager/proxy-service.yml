@@ -1,11 +1,15 @@
+{{- $fullName := printf "%s-group-manager-proxy" (include "shinsei-manager.prefix" .) | trunc 63 | trimSuffix "-" }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: group-manager-api-proxy
+  name: {{ $fullName }}
+  labels:
+    {{- include "shinsei-manager.labels" . | nindent 4 }}
+    app: {{ $fullName }}
 spec:
   type: NodePort
   selector:
-    app: group-manager-api-proxy
+    app: {{ $fullName }}
   ports:
   - port: 80
     nodePort: {{ .Values.ports.groupManager }}

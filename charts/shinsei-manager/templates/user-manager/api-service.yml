@@ -1,10 +1,14 @@
+{{- $fullName := printf "%s-user-manager" (include "shinsei-manager.prefix" .) | trunc 63 | trimSuffix "-" }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: user-manager
+  name: {{ $fullName }}
+  labels:
+    {{- include "shinsei-manager.labels" . | nindent 4 }}
+    app: {{ $fullName }}
 spec:
   type: ClusterIP
   selector:
-    app: user-manager
+    app: {{ $fullName }}
   ports:
-    - port: 80
+  - port: 80

@@ -1,8 +1,5 @@
 # Default values for shinsei-manager.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
-
+# WARNING: Change all default credentials before deploying to production.
 
 adminAccount:
   username: admin
@@ -19,6 +16,29 @@ storage:
   neo4j: 10Gi
   shinseiManager: 10Gi
 
+images:
+  shinseiManager:
+    api: public.ecr.aws/jtekt-corporation/shinsei-manager:v2.8.1
+    gui: public.ecr.aws/jtekt-corporation/shinsei-manager-front:v1.5.5
+    proxy: moreillon/api-proxy
+  groupManager:
+    api: moreillon/group-manager
+    gui: moreillon/group-manager-front
+    proxy: moreillon/api-proxy
+  userManager:
+    api: moreillon/user-manager:v5.0.2
+    gui: moreillon/user-manager-front:v5.0.3
+    proxy: moreillon/api-proxy
+
+# Resource requests and limits applied to all containers.
+# Ref: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+resources: {}
+# requests:
+#   cpu: 100m
+#   memory: 128Mi
+# limits:
+#   cpu: 500m
+#   memory: 256Mi
 
 neo4j:
   enabled: true

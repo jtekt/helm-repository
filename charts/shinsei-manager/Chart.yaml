@@ -1,6 +1,6 @@
 apiVersion: v2
 name: shinsei-manager
-description: A Helm chart for Kubernetes
+description: Helm chart for shinsei-manager and its user/group management dependencies
 
 # A chart can be either an 'application' or a 'library' chart.
 #

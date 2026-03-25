@@ -1,22 +1,42 @@
+{{- $fullName := printf "%s-user-manager" (include "shinsei-manager.prefix" .) | trunc 63 | trimSuffix "-" }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-manager
+  name: {{ $fullName }}
+  labels:
+    {{- include "shinsei-manager.labels" . | nindent 4 }}
+    app: {{ $fullName }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: user-manager
+      app: {{ $fullName }}
   template:
     metadata:
       labels:
-        app: user-manager
+        app: {{ $fullName }}
     spec:
       containers:
-        - name: user-manager
-          image: moreillon/user-manager:v5.0.2
-          ports:
-            - containerPort: 80
-          envFrom:
-            - secretRef:
-                name: environment-variables
+      - name: {{ $fullName }}
+        image: {{ .Values.images.userManager.api }}
+        ports:
+        - containerPort: 80
+        envFrom:
+        - secretRef:
+            name: {{ include "shinsei-manager.prefix" . }}-env
+        {{- with .Values.resources }}
+        resources:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
