@@ -1,2 +1,20 @@
-Image storage service
+Image Storage Service has been deployed.
 
+  Release name: {{ .Release.Name }}
+  Namespace:    {{ .Release.Namespace }}
+
+Access the application via the Kong proxy NodePort:
+  http://<node-ip>:{{ .Values.kong.proxy.http.nodePort }}
+
+{{- if not .Values.mongodb.enabled }}
+
+WARNING: The bundled MongoDB is disabled.
+  Ensure an external connection string is set:
+  mongodb.connectionString=<your-connection-string>
+  (current value: {{ include "image-storage-service.mongodb.connectionString" . }})
+{{- end }}
+
+{{- if .Values.auth.enabled }}
+
+Authentication is enabled via the user-manager subchart.
+{{- end }}

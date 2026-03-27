@@ -1,11 +1,16 @@
-{{ $fullName := printf "%s-gui" (include "image-storage-service.prefix" .) | trunc 63 | trimSuffix "-" }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{include "image-storage-service.prefix" .}}-gui
+  name: {{ include "image-storage-service.gui.fullname" . }}
+  labels:
+    {{- include "image-storage-service.labels" . | nindent 4 }}
+    app.kubernetes.io/component: gui
 spec:
   type: ClusterIP
   selector:
-    app: {{include "image-storage-service.prefix" .}}-gui
+    {{- include "image-storage-service.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: gui
   ports:
-  - port: 80
+    - port: 80
+      targetPort: 80
+      protocol: TCP

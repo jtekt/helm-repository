@@ -1,9 +1,32 @@
-# nameOverride: iss
+# nameOverride: ""
+# fullnameOverride: ""
 
 image: public.ecr.aws/jtekt-corporation/image-storage-service:v1.16.17
+imagePullPolicy: IfNotPresent
+
+# imagePullSecrets:
+#   - name: ecr-pullsecret
+
+api:
+  replicaCount: 1
+  # resources:
+  #   requests:
+  #     cpu: 100m
+  #     memory: 128Mi
+  #   limits:
+  #     cpu: 500m
+  #     memory: 512Mi
 
 gui:
   image: public.ecr.aws/jtekt-corporation/image-storage-service-gui:v1.9.4
+  replicaCount: 1
+  # resources:
+  #   requests:
+  #     cpu: 50m
+  #     memory: 64Mi
+  #   limits:
+  #     cpu: 200m
+  #     memory: 128Mi
 
 persistence:
   size: 20Gi
@@ -41,6 +64,8 @@ kong:
     database: "off"
     dns_order: A,CNAME,LAST,SRV
   dblessConfig:
+    # Must match the ConfigMap name created by templates/proxy/kong-cm.yml.
+    # Override this value if deploying multiple releases to the same namespace.
     configMap: kong-config
   proxy:
     type: NodePort

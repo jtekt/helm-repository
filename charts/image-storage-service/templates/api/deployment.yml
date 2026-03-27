@@ -1,33 +1,46 @@
-{{ $fullName := printf "%s-api" (include "image-storage-service.prefix" .) | trunc 63 | trimSuffix "-" }}
-{{ $mongodbConnectionString := include "image-storage-service.mongodb.connectionString" . }}
+{{- $mongodbConnectionString := include "image-storage-service.mongodb.connectionString" . -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ $fullName }}
+  name: {{ include "image-storage-service.api.fullname" . }}
+  labels:
+    {{- include "image-storage-service.labels" . | nindent 4 }}
+    app.kubernetes.io/component: api
 spec:
-  replicas: 1
+  replicas: {{ .Values.api.replicaCount }}
   selector:
     matchLabels:
-      app: {{ $fullName }}
+      {{- include "image-storage-service.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: api
   template:
     metadata:
       labels:
-        app: {{ $fullName }}
+        {{- include "image-storage-service.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: api
     spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
-      - name: {{ $fullName }}
-        image: {{ .Values.image }}
-        env:
-        - name: MONGODB_CONNECTION_STRING
-          value: {{ $mongodbConnectionString }}
-        {{ if .Values.auth.enabled }}
-        - name: AUTHENTICATION_URL
-          value: http://{{ printf "%s-auth-api" .Release.Name | trunc 63 | trimSuffix "-" }}/users/self
-        {{ end }}
-        volumeMounts:
-        - mountPath: /usr/src/app/uploads
-          name: {{ $fullName }}
+        - name: api
+          image: {{ .Values.image }}
+          imagePullPolicy: {{ .Values.imagePullPolicy }}
+          env:
+            - name: MONGODB_CONNECTION_STRING
+              value: {{ $mongodbConnectionString }}
+            {{- if .Values.auth.enabled }}
+            - name: AUTHENTICATION_URL
+              value: http://{{ printf "%s-auth-api" .Release.Name | trunc 63 | trimSuffix "-" }}/users/self
+            {{- end }}
+          volumeMounts:
+            - mountPath: /usr/src/app/uploads
+              name: storage
+          {{- with .Values.api.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
       volumes:
-      - name: {{ $fullName }}
-        persistentVolumeClaim:
-          claimName: {{ $fullName }}
+        - name: storage
+          persistentVolumeClaim:
+            claimName: {{ include "image-storage-service.api.fullname" . }}

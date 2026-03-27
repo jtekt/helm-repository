@@ -1,11 +1,13 @@
-{{ $fullName := printf "%s-api" (include "image-storage-service.prefix" .) | trunc 63 | trimSuffix "-" }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ $fullName }}
+  name: {{ include "image-storage-service.api.fullname" . }}
+  labels:
+    {{- include "image-storage-service.labels" . | nindent 4 }}
+    app.kubernetes.io/component: api
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: {{ default "200Gi" .Values.persistence.size }}
+      storage: {{ .Values.persistence.size }}
