@@ -1,0 +1,12 @@
+apiVersion: v2
+name: api-key-manager
+description: Helm chart for the API Key Manager
+
+type: application
+
+version: 0.1.0
+
+appVersion: "v0.1.1"
+
+icon: https://raw.githubusercontent.com/jtekt/helm-repository/master/charts/api-key-manager/icon.png
+

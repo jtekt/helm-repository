@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "api-key-manager.api.fullname" . }}
+  labels:
+    {{- include "api-key-manager.labels" . | nindent 4 }}
+    app.kubernetes.io/component: api
+spec:
+  replicas: {{ .Values.api.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "api-key-manager.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: api
+  template:
+    metadata:
+      labels:
+        {{- include "api-key-manager.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: api
+      annotations:
+        # Restart pods when the database URL or pepper changes
+        checksum/secret: {{ include (print $.Template.BasePath "/api/secret.yml") . | sha256sum }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      initContainers:
+        # Applies database migrations; retried until the database is reachable
+        - name: migrate
+          image: {{ .Values.image }}
+          imagePullPolicy: {{ .Values.imagePullPolicy }}
+          command: ["node", "dist/src/migrate.js"]
+          envFrom:
+            - secretRef:
+                name: {{ include "api-key-manager.api.fullname" . }}
+      containers:
+        - name: api
+          image: {{ .Values.image }}
+          imagePullPolicy: {{ .Values.imagePullPolicy }}
+          ports:
+            - name: http
+              containerPort: 3000
+          envFrom:
+            - secretRef:
+                name: {{ include "api-key-manager.api.fullname" . }}
+          env:
+            {{- with .Values.oidc.jwksUri }}
+            - name: OIDC_JWKS_URI
+              value: {{ . | quote }}
+            {{- end }}
+            {{- with .Values.oidc.issuer }}
+            - name: OIDC_ISSUER
+              value: {{ . | quote }}
+            {{- end }}
+            - name: OIDC_USER_CLAIM
+              value: {{ .Values.oidc.userClaim | quote }}
+            {{- with .Values.api.env }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          {{- with .Values.api.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}

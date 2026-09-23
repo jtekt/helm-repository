@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "api-key-manager.gui.fullname" . }}
+  labels:
+    {{- include "api-key-manager.labels" . | nindent 4 }}
+    app.kubernetes.io/component: gui
+spec:
+  replicas: {{ .Values.gui.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "api-key-manager.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: gui
+  template:
+    metadata:
+      labels:
+        {{- include "api-key-manager.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: gui
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: gui
+          image: {{ .Values.gui.image }}
+          imagePullPolicy: {{ .Values.imagePullPolicy }}
+          ports:
+            - name: http
+              containerPort: 80
+          env:
+            # Relative to the proxy, which routes /api/ to the API
+            - name: VITE_API_BASE_URL
+              value: /api
+            {{- with .Values.oidc.authority }}
+            - name: VITE_OIDC_AUTHORITY
+              value: {{ . | quote }}
+            {{- end }}
+            {{- with .Values.oidc.clientId }}
+            - name: VITE_OIDC_CLIENT_ID
+              value: {{ . | quote }}
+            {{- end }}
+            {{- with .Values.gui.appsUrl }}
+            - name: VITE_APPS_URL
+              value: {{ . | quote }}
+            {{- end }}
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          {{- with .Values.gui.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}

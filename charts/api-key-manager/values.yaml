@@ -1,0 +1,86 @@
+# nameOverride: ""
+# fullnameOverride: ""
+
+image: public.ecr.aws/jtekt-corporation/api-key-manager-api:v0.1.1
+imagePullPolicy: IfNotPresent
+
+# imagePullSecrets:
+#   - name: ecr-pullsecret
+
+api:
+  replicaCount: 1
+  # Secret appended to keys before hashing. Changing it invalidates all existing keys.
+  keyPepper: ""
+  # Additional environment variables, e.g. ARGON2_MEMORY_COST, ARGON2_TIME_COST, ARGON2_PARALLELISM
+  env: []
+  # resources:
+  #   requests:
+  #     cpu: 100m
+  #     memory: 128Mi
+  #   limits:
+  #     cpu: 500m
+  #     memory: 512Mi
+
+gui:
+  image: public.ecr.aws/jtekt-corporation/api-key-manager-gui:v0.1.1
+  replicaCount: 1
+  # URL of the app launcher linked from the app bar
+  # appsUrl: https://apps.example.com
+  # resources:
+  #   requests:
+  #     cpu: 50m
+  #     memory: 64Mi
+  #   limits:
+  #     cpu: 200m
+  #     memory: 128Mi
+
+# Authentication
+# If oidc.jwksUri is empty, the API trusts the X-User-ID header instead,
+# which lets any caller act as any user. Only use that for development.
+oidc:
+  # API: JWKS endpoint used to verify Bearer tokens, e.g. https://keycloak.example.com/realms/my-realm/protocol/openid-connect/certs
+  jwksUri: ""
+  # API: expected "iss" claim (optional)
+  issuer: ""
+  # API: JWT claim used as the user ID
+  userClaim: sub
+  # GUI: OIDC provider used for login, e.g. https://keycloak.example.com/realms/my-realm
+  authority: ""
+  # GUI: public client ID
+  clientId: ""
+
+postgresql:
+  # If disabled, set connectionString to an external PostgreSQL
+  # connectionString: postgres://user:password@host:5432/api_key_manager
+  enabled: true
+  image:
+    repository: postgres
+    tag: "17"
+  auth:
+    username: api_key_manager
+    password: api_key_manager
+    database: api_key_manager
+  persistence:
+    size: 8Gi
+  # resources:
+  #   requests:
+  #     cpu: 100m
+  #     memory: 256Mi
+  #   limits:
+  #     cpu: 500m
+  #     memory: 512Mi
+
+proxy:
+  # Single entry point: / goes to the GUI, /api/ to the API
+  image: nginx:1.28-alpine
+  replicaCount: 1
+  service:
+    type: NodePort
+    nodePort: 30108
+  # resources:
+  #   requests:
+  #     cpu: 50m
+  #     memory: 32Mi
+  #   limits:
+  #     cpu: 200m
+  #     memory: 128Mi

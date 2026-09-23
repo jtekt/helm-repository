@@ -1,0 +1,31 @@
+API Key Manager has been deployed.
+
+  Release name: {{ .Release.Name }}
+  Namespace:    {{ .Release.Namespace }}
+
+{{ if eq .Values.proxy.service.type "NodePort" -}}
+Access the application via the proxy NodePort:
+  GUI: http://<node-ip>:{{ .Values.proxy.service.nodePort }}
+  API: http://<node-ip>:{{ .Values.proxy.service.nodePort }}/api/
+{{- else -}}
+Access the application via the {{ include "api-key-manager.proxy.fullname" . }} service:
+  GUI: /
+  API: /api/
+{{- end }}
+
+Other services validate keys with:
+  POST http://{{ include "api-key-manager.api.fullname" . }}.{{ .Release.Namespace }}/validate  { "api_key": "ak_..." }
+
+{{- if not .Values.oidc.jwksUri }}
+
+WARNING: oidc.jwksUri is not set.
+  The API trusts the X-User-ID header, so any caller can act as any user.
+  Set oidc.jwksUri (and oidc.authority / oidc.clientId for the GUI) for production use.
+{{- end }}
+
+{{- if not .Values.postgresql.enabled }}
+
+WARNING: The bundled PostgreSQL is disabled.
+  Ensure an external connection string is set:
+  postgresql.connectionString=<your-connection-string>
+{{- end }}
