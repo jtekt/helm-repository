@@ -79,6 +79,20 @@ Fully qualified name for the PostgreSQL component.
 {{- end }}
 
 {{/*
+Name of the Secret providing the API's environment variables.
+*/}}
+{{- define "api-key-manager.api.secretName" -}}
+{{- default (include "api-key-manager.api.fullname" .) .Values.api.existingSecret }}
+{{- end }}
+
+{{/*
+Name of the Secret providing the PostgreSQL credentials.
+*/}}
+{{- define "api-key-manager.postgresql.secretName" -}}
+{{- default (include "api-key-manager.postgresql.fullname" .) .Values.postgresql.auth.existingSecret }}
+{{- end }}
+
+{{/*
 PostgreSQL connection string.
 Uses .Values.postgresql.connectionString if provided,
 otherwise constructs an in-cluster connection string to the bundled PostgreSQL.

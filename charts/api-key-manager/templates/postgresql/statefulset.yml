@@ -29,7 +29,7 @@ spec:
               containerPort: 5432
           envFrom:
             - secretRef:
-                name: {{ $fullName }}
+                name: {{ include "api-key-manager.postgresql.secretName" . }}
           env:
             # Subdirectory, so initdb does not fail on a non-empty volume root (lost+found)
             - name: PGDATA

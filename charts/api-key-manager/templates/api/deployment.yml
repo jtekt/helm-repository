@@ -16,9 +16,11 @@ spec:
       labels:
         {{- include "api-key-manager.selectorLabels" . | nindent 8 }}
         app.kubernetes.io/component: api
+      {{- if not .Values.api.existingSecret }}
       annotations:
         # Restart pods when the database URL or pepper changes
         checksum/secret: {{ include (print $.Template.BasePath "/api/secret.yml") . | sha256sum }}
+      {{- end }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -32,7 +34,7 @@ spec:
           command: ["node", "dist/src/migrate.js"]
           envFrom:
             - secretRef:
-                name: {{ include "api-key-manager.api.fullname" . }}
+                name: {{ include "api-key-manager.api.secretName" . }}
       containers:
         - name: api
           image: {{ .Values.image }}
@@ -42,7 +44,7 @@ spec:
               containerPort: 3000
           envFrom:
             - secretRef:
-                name: {{ include "api-key-manager.api.fullname" . }}
+                name: {{ include "api-key-manager.api.secretName" . }}
           env:
             {{- with .Values.oidc.jwksUri }}
             - name: OIDC_JWKS_URI

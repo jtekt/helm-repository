@@ -9,6 +9,10 @@ imagePullPolicy: IfNotPresent
 
 api:
   replicaCount: 1
+  # Name of an existing Secret providing DATABASE_URL and, optionally, KEY_PEPPER.
+  # When set, the chart does not create the API Secret, and
+  # postgresql.connectionString and api.keyPepper are ignored.
+  existingSecret: ""
   # Secret appended to keys before hashing. Changing it invalidates all existing keys.
   keyPepper: ""
   # Additional environment variables, e.g. ARGON2_MEMORY_COST, ARGON2_TIME_COST, ARGON2_PARALLELISM
@@ -57,6 +61,10 @@ postgresql:
     repository: postgres
     tag: "17"
   auth:
+    # Name of an existing Secret providing POSTGRES_USER, POSTGRES_PASSWORD and POSTGRES_DB.
+    # When set, the values below are ignored, and api.existingSecret must provide
+    # a DATABASE_URL matching these credentials.
+    existingSecret: ""
     username: api_key_manager
     password: api_key_manager
     database: api_key_manager

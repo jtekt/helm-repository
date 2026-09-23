@@ -34,7 +34,7 @@ WARNING: oidc.jwksUri is not set.
   Set oidc.jwksUri (and oidc.authority / oidc.clientId for the GUI) for production use.
 {{- end }}
 
-{{- if not .Values.postgresql.enabled }}
+{{- if and (not .Values.postgresql.enabled) (not .Values.api.existingSecret) }}
 
 WARNING: The bundled PostgreSQL is disabled.
   Ensure an external connection string is set:

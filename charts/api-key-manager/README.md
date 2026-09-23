@@ -28,12 +28,14 @@ Without `oidc.jwksUri`, the API trusts the `X-User-ID` header and any caller can
 | `image` / `gui.image` | API and GUI images |
 | `oidc.jwksUri`, `oidc.issuer`, `oidc.userClaim` | Bearer token verification for the API |
 | `oidc.authority`, `oidc.clientId` | OIDC login for the GUI |
+| `api.existingSecret` | Existing Secret with `DATABASE_URL` and optionally `KEY_PEPPER`. Replaces `postgresql.connectionString` and `api.keyPepper` |
 | `api.keyPepper` | Secret appended to keys before hashing. Changing it invalidates all existing keys |
 | `api.env` | Extra API environment variables (e.g. `ARGON2_MEMORY_COST`) |
 | `gui.appsUrl` | App launcher link shown in the GUI |
 | `postgresql.enabled` | Deploy the bundled PostgreSQL. If disabled, set `postgresql.connectionString` |
 | `postgresql.image.repository`, `postgresql.image.tag` | Image of the bundled PostgreSQL (default `postgres:17`) |
 | `postgresql.auth.*` | Credentials of the bundled PostgreSQL. Change the password before deploying to production |
+| `postgresql.auth.existingSecret` | Existing Secret with `POSTGRES_USER`, `POSTGRES_PASSWORD` and `POSTGRES_DB` for the bundled PostgreSQL. Requires `api.existingSecret` with a matching `DATABASE_URL` |
 | `postgresql.persistence.size` | Size of the PostgreSQL volume |
 | `proxy.service.type`, `proxy.service.nodePort` | Service exposing the proxy (default NodePort `30108`) |
 | `httpRoute.enabled`, `httpRoute.parentRefs`, `httpRoute.hostnames` | Gateway API HTTPRoute to the proxy (requires a Gateway controller) |
