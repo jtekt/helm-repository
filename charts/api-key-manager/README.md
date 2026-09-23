@@ -36,3 +36,4 @@ Without `oidc.jwksUri`, the API trusts the `X-User-ID` header and any caller can
 | `postgresql.auth.*` | Credentials of the bundled PostgreSQL. Change the password before deploying to production |
 | `postgresql.persistence.size` | Size of the PostgreSQL volume |
 | `proxy.service.type`, `proxy.service.nodePort` | Service exposing the proxy (default NodePort `30108`) |
+| `httpRoute.enabled`, `httpRoute.parentRefs`, `httpRoute.hostnames` | Gateway API HTTPRoute to the proxy (requires a Gateway controller) |

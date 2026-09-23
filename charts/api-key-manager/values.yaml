@@ -84,3 +84,14 @@ proxy:
   #   limits:
   #     cpu: 200m
   #     memory: 128Mi
+
+# Gateway API route to the proxy. Requires a Gateway controller in the cluster.
+# When enabled, consider setting proxy.service.type to ClusterIP.
+httpRoute:
+  enabled: false
+  annotations: {}
+  parentRefs: []
+  #   - name: my-gateway
+  #     namespace: gateway-system
+  hostnames: []
+  #   - api-key-manager.example.com

@@ -2,12 +2,23 @@ API Key Manager has been deployed.
 
   Release name: {{ .Release.Name }}
   Namespace:    {{ .Release.Namespace }}
+{{- if .Values.httpRoute.enabled }}
 
-{{ if eq .Values.proxy.service.type "NodePort" -}}
+Access the application via the HTTPRoute:
+{{- range .Values.httpRoute.hostnames }}
+  GUI: http://{{ . }}/
+  API: http://{{ . }}/api/
+{{- else }}
+  (no hostnames set; any host on the parent Gateway)
+{{- end }}
+{{- end }}
+{{- if eq .Values.proxy.service.type "NodePort" }}
+
 Access the application via the proxy NodePort:
   GUI: http://<node-ip>:{{ .Values.proxy.service.nodePort }}
   API: http://<node-ip>:{{ .Values.proxy.service.nodePort }}/api/
-{{- else -}}
+{{- else if not .Values.httpRoute.enabled }}
+
 Access the application via the {{ include "api-key-manager.proxy.fullname" . }} service:
   GUI: /
   API: /api/
