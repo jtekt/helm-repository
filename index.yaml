@@ -15,6 +15,17 @@ entries:
   api-key-manager:
   - apiVersion: v2
     appVersion: v0.1.1
+    created: "2026-09-23T06:04:38.155430497Z"
+    description: Helm chart for the API Key Manager
+    digest: f78f72e676d3dec4fb7b7840a1f925e2c79e2573590967c7acf37528e9a80172
+    icon: https://raw.githubusercontent.com/jtekt/helm-repository/master/charts/api-key-manager/icon.png
+    name: api-key-manager
+    type: application
+    urls:
+    - https://github.com/jtekt/helm-repository/releases/download/api-key-manager-0.3.0/api-key-manager-0.3.0.tgz
+    version: 0.3.0
+  - apiVersion: v2
+    appVersion: v0.1.1
     created: "2026-09-23T05:47:02.557878561Z"
     description: Helm chart for the API Key Manager
     digest: 4333f167e0608e1dbeeeed87b8bd9c44d4aec19da5ed7890976d0f67a61133a6
@@ -604,4 +615,4 @@ entries:
     urls:
     - https://github.com/jtekt/helm-repository/releases/download/time-series-storage-0.1.7/time-series-storage-0.1.7.tgz
     version: 0.1.7
-generated: "2026-09-23T05:47:02.557919612Z"
+generated: "2026-09-23T06:04:38.155479057Z"
