@@ -26,7 +26,7 @@ api:
   #     memory: 512Mi
 
 gui:
-  image: public.ecr.aws/jtekt-corporation/api-key-manager-gui:v0.1.1
+  image: public.ecr.aws/jtekt-corporation/api-key-manager-gui:v0.1.3
   replicaCount: 1
   # URL of the app launcher linked from the app bar
   # appsUrl: https://apps.example.com
@@ -80,7 +80,7 @@ postgresql:
 
 proxy:
   # Single entry point: / goes to the GUI, /api/ to the API
-  image: nginx:1.28-alpine
+  image: nginx:1.31-alpine
   replicaCount: 1
   service:
     type: NodePort
